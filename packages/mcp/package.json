@@ -1,0 +1,46 @@
+{
+  "name": "@moemodels/mcp",
+  "version": "0.1.0",
+  "description": "Read-only MCP tools for sourced MOEModels records, calculated static fit, evaluation evidence, and validation plans.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": ["dist", "README.md", "LICENSE", "NOTICE", "examples"],
+  "bin": {
+    "moemodels-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@moemodels/core": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels/tree/main/packages/mcp#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
+}

@@ -1,0 +1,886 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moemodels.ai/schemas/evaluations-v1.json",
+  "title": "MOEModels evaluations v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "generatedAt",
+    "sources",
+    "adapters",
+    "reportedClaims",
+    "rawArtifacts",
+    "runs"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "adapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/adapter"
+      }
+    },
+    "reportedClaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/ownerReportedClaim"
+      }
+    },
+    "rawArtifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rawArtifact"
+      }
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/normalizedRun"
+      }
+    }
+  },
+  "$defs": {
+    "artifactIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "revision"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 3
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "publisher",
+        "url",
+        "retrievedAt",
+        "sourceType"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "licenseLocator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceType": {
+          "enum": [
+            "official_model_card",
+            "technical_report",
+            "adapter_repository",
+            "evaluation_artifact"
+          ]
+        },
+        "artifactSnapshot": {
+          "$ref": "#/$defs/artifactIdentity"
+        }
+      }
+    },
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "packageName",
+        "version",
+        "repositoryUrl",
+        "revision",
+        "revisionUrl",
+        "status",
+        "sourceIds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "lm_eval"
+        },
+        "packageName": {
+          "const": "lm-eval"
+        },
+        "version": {
+          "const": "0.4.12"
+        },
+        "repositoryUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "revision": {
+          "const": "6d642546f4688648fced259eb3302efd36ece5af"
+        },
+        "revisionUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "status": {
+          "const": "pinned_not_executed"
+        },
+        "sourceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "suite",
+        "version",
+        "subset"
+      ],
+      "properties": {
+        "suite": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "subset": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      }
+    },
+    "reportedMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value",
+        "unit",
+        "scale",
+        "direction"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "reported_score",
+            "percentage_points"
+          ]
+        },
+        "scale": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "direction": {
+          "enum": [
+            "higher_is_better",
+            "lower_is_better"
+          ]
+        }
+      }
+    },
+    "setting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "evaluationContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "reportedSettings"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reportedSettings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/setting"
+          }
+        }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "locator"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ownerReportedClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "claimType",
+        "modelId",
+        "modelName",
+        "owner",
+        "artifact",
+        "artifactAssociation",
+        "executionArtifactDigest",
+        "benchmark",
+        "metric",
+        "evaluation",
+        "sourceRefs",
+        "comparisonEligible",
+        "missingContext"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "claimType": {
+          "const": "owner_reported"
+        },
+        "modelId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "modelName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifactIdentity"
+        },
+        "artifactAssociation": {
+          "enum": [
+            "artifact_snapshot_associated",
+            "model_name_only"
+          ]
+        },
+        "executionArtifactDigest": {
+          "type": "null"
+        },
+        "benchmark": {
+          "$ref": "#/$defs/benchmark"
+        },
+        "metric": {
+          "$ref": "#/$defs/reportedMetric"
+        },
+        "evaluation": {
+          "$ref": "#/$defs/evaluationContext"
+        },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceRef"
+          }
+        },
+        "comparisonEligible": {
+          "const": false
+        },
+        "missingContext": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "rawArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "runId",
+        "adapterId",
+        "sourceId",
+        "kind",
+        "mediaType",
+        "uri",
+        "sha256",
+        "byteLength"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adapterId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "lm_eval_results",
+            "lm_eval_samples",
+            "run_manifest"
+          ]
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "byteLength": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "normalizedMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "sourceKey",
+        "filter",
+        "value",
+        "standardError",
+        "sampleCount",
+        "unit",
+        "direction"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "filter": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "number"
+        },
+        "standardError": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "enum": [
+            "higher_is_better",
+            "lower_is_better"
+          ]
+        }
+      }
+    },
+    "evaluationFingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "harness",
+        "task",
+        "chatTemplateSha256",
+        "systemPromptSha256",
+        "reasoningConfigSha256",
+        "samplingConfigSha256",
+        "canonicalization",
+        "seeds",
+        "samples",
+        "runtime",
+        "hardware"
+      ],
+      "properties": {
+        "harness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "version",
+            "revision"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          }
+        },
+        "task": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "hash",
+            "version",
+            "datasetRevision"
+          ],
+          "properties": {
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "datasetRevision": {
+              "type": "string",
+              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+            }
+          }
+        },
+        "chatTemplateSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "systemPromptSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "reasoningConfigSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "samplingConfigSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "canonicalization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scheme",
+            "textEncoding",
+            "absentValue",
+            "hardwareRegistryVersion"
+          ],
+          "properties": {
+            "scheme": {
+              "const": "RFC8785"
+            },
+            "textEncoding": {
+              "const": "UTF-8"
+            },
+            "absentValue": {
+              "const": "JSON null"
+            },
+            "hardwareRegistryVersion": {
+              "const": "1.0.0"
+            }
+          }
+        },
+        "seeds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "random",
+            "numpy",
+            "torch",
+            "fewshot"
+          ],
+          "properties": {
+            "random": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "numpy": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "torch": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "fewshot": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "samples": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "original",
+            "effective",
+            "limit",
+            "repetitions"
+          ],
+          "properties": {
+            "original": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "effective": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "limit": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "repetitions": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "version",
+            "precision"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "precision": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$"
+            }
+          }
+        },
+        "hardware": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "acceleratorId",
+            "acceleratorCount",
+            "nodeCount",
+            "devicesPerNode",
+            "interconnect"
+          ],
+          "properties": {
+            "acceleratorId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$"
+            },
+            "acceleratorCount": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "nodeCount": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "devicesPerNode": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "interconnect": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$"
+            }
+          }
+        }
+      }
+    },
+    "normalizedRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "comparisonEligible": {
+                "const": true
+              }
+            },
+            "required": [
+              "comparisonEligible"
+            ]
+          },
+          "then": {
+            "properties": {
+              "comparisonEligibilityReasons": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "comparisonEligible": {
+                "const": false
+              }
+            },
+            "required": [
+              "comparisonEligible"
+            ]
+          },
+          "then": {
+            "properties": {
+              "comparisonEligibilityReasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "required": [
+        "id",
+        "runType",
+        "adapterId",
+        "modelId",
+        "artifact",
+        "executionArtifactDigest",
+        "benchmark",
+        "metrics",
+        "settings",
+        "rawArtifactIds",
+        "startedAt",
+        "completedAt",
+        "fingerprint",
+        "comparisonEligible",
+        "comparisonEligibilityReasons"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "runType": {
+          "const": "normalized"
+        },
+        "adapterId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifactIdentity"
+        },
+        "executionArtifactDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "benchmark": {
+          "$ref": "#/$defs/benchmark"
+        },
+        "metrics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/normalizedMetric"
+          }
+        },
+        "settings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/setting"
+          }
+        },
+        "rawArtifactIds": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fingerprint": {
+          "$ref": "#/$defs/evaluationFingerprint"
+        },
+        "comparisonEligible": {
+          "type": "boolean"
+        },
+        "comparisonEligibilityReasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

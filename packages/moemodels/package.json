@@ -1,0 +1,41 @@
+{
+  "name": "moemodels",
+  "version": "0.1.0",
+  "description": "One-command launcher for MOE deployment planning, endpoint measurement, and evidence verification.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "bin": {
+    "moemodels": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@moemodels/bench": "0.1.0",
+    "@moemodels/cli": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git",
+    "directory": "packages/moemodels"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels/tree/main/packages/moemodels#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
+}

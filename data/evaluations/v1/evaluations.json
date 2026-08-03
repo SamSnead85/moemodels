@@ -1,0 +1,1051 @@
+{
+  "$schema": "./schema.json",
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-08-03",
+  "sources": [
+    {
+      "id": "kimi-k3-pinned-model-card",
+      "title": "Kimi K3 pinned model card",
+      "publisher": "Moonshot AI",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/README.md",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "official_model_card",
+      "artifactSnapshot": {
+        "repository": "moonshotai/Kimi-K3",
+        "revision": "9f62e4e9fffbd0a83ddd60e1c209d828994b3569"
+      }
+    },
+    {
+      "id": "deepseek-v4-pro-pinned-model-card",
+      "title": "DeepSeek V4 Pro pinned model card",
+      "publisher": "DeepSeek",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/b5968e9190ef611bbf34a7229255be88a0e937c1/README.md",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "official_model_card",
+      "artifactSnapshot": {
+        "repository": "deepseek-ai/DeepSeek-V4-Pro",
+        "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1"
+      }
+    },
+    {
+      "id": "deepseek-v4-technical-report",
+      "title": "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence",
+      "publisher": "DeepSeek-AI",
+      "url": "https://arxiv.org/pdf/2606.19348v1",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "technical_report"
+    },
+    {
+      "id": "glm-5-2-pinned-model-card",
+      "title": "GLM-5.2 pinned model card",
+      "publisher": "Z.ai",
+      "url": "https://huggingface.co/zai-org/GLM-5.2/blob/b4734de4facf877f85769a911abafc5283eab3d9/README.md",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "official_model_card",
+      "artifactSnapshot": {
+        "repository": "zai-org/GLM-5.2",
+        "revision": "b4734de4facf877f85769a911abafc5283eab3d9"
+      }
+    },
+    {
+      "id": "gemma-4-26b-a4b-it-pinned-model-card",
+      "title": "Gemma 4 26B A4B IT pinned model card",
+      "publisher": "Google DeepMind",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/README.md",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "official_model_card",
+      "artifactSnapshot": {
+        "repository": "google/gemma-4-26B-A4B-it",
+        "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52"
+      }
+    },
+    {
+      "id": "gemma-4-technical-report",
+      "title": "Gemma 4 Technical Report",
+      "publisher": "Gemma Team, Google DeepMind",
+      "url": "https://arxiv.org/pdf/2607.02770v1",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "technical_report"
+    },
+    {
+      "id": "qwen3-30b-a3b-pinned-model-card",
+      "title": "Qwen3-30B-A3B pinned model card",
+      "publisher": "Qwen Team",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39/README.md",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "official_model_card",
+      "artifactSnapshot": {
+        "repository": "Qwen/Qwen3-30B-A3B",
+        "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39"
+      }
+    },
+    {
+      "id": "qwen3-technical-report",
+      "title": "Qwen3 Technical Report",
+      "publisher": "Qwen Team",
+      "url": "https://arxiv.org/pdf/2505.09388v1",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "technical_report"
+    },
+    {
+      "id": "lm-eval-v0-4-12-source",
+      "title": "EleutherAI lm-evaluation-harness v0.4.12 pinned source",
+      "publisher": "EleutherAI",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness/tree/6d642546f4688648fced259eb3302efd36ece5af",
+      "retrievedAt": "2026-08-03",
+      "sourceType": "adapter_repository"
+    }
+  ],
+  "adapters": [
+    {
+      "id": "lm-eval-v0-4-12",
+      "name": "EleutherAI lm-evaluation-harness",
+      "kind": "lm_eval",
+      "packageName": "lm-eval",
+      "version": "0.4.12",
+      "repositoryUrl": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "revision": "6d642546f4688648fced259eb3302efd36ece5af",
+      "revisionUrl": "https://github.com/EleutherAI/lm-evaluation-harness/tree/6d642546f4688648fced259eb3302efd36ece5af",
+      "status": "pinned_not_executed",
+      "sourceIds": [
+        "lm-eval-v0-4-12-source"
+      ]
+    }
+  ],
+  "reportedClaims": [
+    {
+      "id": "kimi-k3-gpqa-diamond-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "kimi-k3",
+      "modelName": "Kimi K3",
+      "owner": "Moonshot AI",
+      "artifact": {
+        "repository": "moonshotai/Kimi-K3",
+        "revision": "9f62e4e9fffbd0a83ddd60e1c209d828994b3569"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "GPQA",
+        "version": null,
+        "subset": "Diamond"
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 93.5,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_effort",
+            "value": "max"
+          },
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "top_p",
+            "value": 0.95
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "kimi-k3-pinned-model-card",
+          "locator": "Section 3, Evaluation Results, GPQA Diamond row; Footnotes common settings"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly label the score as a percentage or define the metric scale.",
+        "Shot count, sample count, prompt, and benchmark revision are not reported.",
+        "Inference engine, runtime configuration, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "kimi-k3-terminal-bench-2-1-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "kimi-k3",
+      "modelName": "Kimi K3",
+      "owner": "Moonshot AI",
+      "artifact": {
+        "repository": "moonshotai/Kimi-K3",
+        "revision": "9f62e4e9fffbd0a83ddd60e1c209d828994b3569"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "Terminal-Bench",
+        "version": "2.1",
+        "subset": null
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 88.3,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_effort",
+            "value": "max"
+          },
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "top_p",
+            "value": 1
+          },
+          {
+            "name": "harness",
+            "value": "Kimi Code"
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "kimi-k3-pinned-model-card",
+          "locator": "Section 3, Evaluation Results, Terminal-Bench 2.1 row; Footnotes coding benchmarks"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly label the score as a percentage or define the metric scale.",
+        "The Kimi Code harness version and full harness configuration are not reported.",
+        "Task revision, trial count, and aggregation method are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "kimi-k3-browsecomp-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "kimi-k3",
+      "modelName": "Kimi K3",
+      "owner": "Moonshot AI",
+      "artifact": {
+        "repository": "moonshotai/Kimi-K3",
+        "revision": "9f62e4e9fffbd0a83ddd60e1c209d828994b3569"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "BrowseComp",
+        "version": null,
+        "subset": null
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 91.2,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_effort",
+            "value": "max"
+          },
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "top_p",
+            "value": 1
+          },
+          {
+            "name": "context_compaction_trigger_tokens",
+            "value": 300000
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "kimi-k3-pinned-model-card",
+          "locator": "Section 3, Evaluation Results, BrowseComp row; Footnotes BrowseComp context-compaction setting"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly label the score as a percentage or define the metric scale.",
+        "The browsing tool implementation, harness version, and context-compaction algorithm are not reported.",
+        "Benchmark revision, trial count, and aggregation method are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro-gpqa-diamond-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "deepseek-v4-pro",
+      "modelName": "DeepSeek V4 Pro",
+      "owner": "DeepSeek",
+      "artifact": {
+        "repository": "deepseek-ai/DeepSeek-V4-Pro",
+        "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "GPQA",
+        "version": null,
+        "subset": "Diamond"
+      },
+      "metric": {
+        "name": "Pass@1",
+        "value": 90.1,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "think_max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_mode",
+            "value": "Think Max"
+          },
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "context_tokens",
+            "value": 384000
+          },
+          {
+            "name": "system_prompt_variant",
+            "value": "Think Max special system prompt"
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "deepseek-v4-pro-pinned-model-card",
+          "locator": "Evaluation Results, Comparison across Modes, GPQA Diamond row, V4-Pro Max column"
+        },
+        {
+          "sourceId": "deepseek-v4-technical-report",
+          "locator": "Section 5.3.1 Evaluation Setup and Table 7"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "Top-p, exact prompt text for GPQA, shot count, and sample count are not reported.",
+        "Benchmark revision and evaluation harness version are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro-livecodebench-v6-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "deepseek-v4-pro",
+      "modelName": "DeepSeek V4 Pro",
+      "owner": "DeepSeek",
+      "artifact": {
+        "repository": "deepseek-ai/DeepSeek-V4-Pro",
+        "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "LiveCodeBench",
+        "version": "v6",
+        "subset": null
+      },
+      "metric": {
+        "name": "Pass@1-COT",
+        "value": 93.5,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "think_max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_mode",
+            "value": "Think Max"
+          },
+          {
+            "name": "system_prompt_variant",
+            "value": "Think Max special system prompt"
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "deepseek-v4-pro-pinned-model-card",
+          "locator": "Evaluation Results, Comparison across Modes, LiveCodeBench row, V4-Pro Max column"
+        },
+        {
+          "sourceId": "deepseek-v4-technical-report",
+          "locator": "Section 5.3.1 Evaluation Setup and Table 7, LiveCodeBench v6 Pass@1-COT"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "Prompt, top-p, sample count, and maximum output length are not reported for this benchmark.",
+        "LiveCodeBench task revision and harness version are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro-swe-bench-verified-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "deepseek-v4-pro",
+      "modelName": "DeepSeek V4 Pro",
+      "owner": "DeepSeek",
+      "artifact": {
+        "repository": "deepseek-ai/DeepSeek-V4-Pro",
+        "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "SWE-bench",
+        "version": null,
+        "subset": "Verified"
+      },
+      "metric": {
+        "name": "Resolved",
+        "value": 80.6,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "think_max",
+        "reportedSettings": [
+          {
+            "name": "reasoning_mode",
+            "value": "Think Max"
+          },
+          {
+            "name": "harness",
+            "value": "DeepSeek internal evaluation framework"
+          },
+          {
+            "name": "tooling",
+            "value": "bash and file-edit tools"
+          },
+          {
+            "name": "max_interaction_steps",
+            "value": 500
+          },
+          {
+            "name": "context_tokens",
+            "value": 512000
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "deepseek-v4-pro-pinned-model-card",
+          "locator": "Evaluation Results, Comparison across Modes, SWE Verified row, V4-Pro Max column"
+        },
+        {
+          "sourceId": "deepseek-v4-technical-report",
+          "locator": "Section 5.3.1 Agent evaluation setup and Table 7"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The internal framework version and complete tool prompts are not published.",
+        "SWE-bench dataset commit, container images, trial count, and aggregation method are not reported.",
+        "Sandbox resources and inference hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "glm-5-2-gpqa-diamond-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "glm-5-2",
+      "modelName": "GLM-5.2",
+      "owner": "Z.ai",
+      "artifact": {
+        "repository": "zai-org/GLM-5.2",
+        "revision": "b4734de4facf877f85769a911abafc5283eab3d9"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "GPQA",
+        "version": null,
+        "subset": "Diamond"
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 91.2,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "unspecified",
+        "reportedSettings": [
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "top_p",
+            "value": 0.95
+          },
+          {
+            "name": "max_new_tokens",
+            "value": 163840
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "glm-5-2-pinned-model-card",
+          "locator": "Benchmark table, GPQA-Diamond row; Footnote for HLE and other reasoning tasks"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly label the score as a percentage or define the metric scale.",
+        "Reasoning effort, prompt, shot count, sample count, and judge configuration are not reported for GPQA.",
+        "Benchmark revision, harness version, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "glm-5-2-swe-bench-pro-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "glm-5-2",
+      "modelName": "GLM-5.2",
+      "owner": "Z.ai",
+      "artifact": {
+        "repository": "zai-org/GLM-5.2",
+        "revision": "b4734de4facf877f85769a911abafc5283eab3d9"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "SWE-bench Pro",
+        "version": null,
+        "subset": null
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 62.1,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "unspecified",
+        "reportedSettings": [
+          {
+            "name": "framework",
+            "value": "OpenHands"
+          },
+          {
+            "name": "prompt_variant",
+            "value": "tailored instruction prompt"
+          },
+          {
+            "name": "temperature",
+            "value": 1
+          },
+          {
+            "name": "top_p",
+            "value": 1
+          },
+          {
+            "name": "max_new_tokens",
+            "value": 32000
+          },
+          {
+            "name": "context_tokens",
+            "value": 400000
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "glm-5-2-pinned-model-card",
+          "locator": "Benchmark table, SWE-bench Pro row; Footnote SWE-Bench Pro settings"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly define the metric or label the score as a percentage.",
+        "OpenHands version and the tailored instruction prompt are not published.",
+        "Dataset commit, container images, task count, trials, and aggregation method are not reported.",
+        "Inference hardware is not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "glm-5-2-mcp-atlas-public-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "glm-5-2",
+      "modelName": "GLM-5.2",
+      "owner": "Z.ai",
+      "artifact": {
+        "repository": "zai-org/GLM-5.2",
+        "revision": "b4734de4facf877f85769a911abafc5283eab3d9"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "MCP-Atlas",
+        "version": null,
+        "subset": "500-task public set"
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 76.8,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "thinking_mode",
+            "value": true
+          },
+          {
+            "name": "task_count",
+            "value": 500
+          },
+          {
+            "name": "timeout_seconds",
+            "value": 600
+          },
+          {
+            "name": "judge_model",
+            "value": "Gemini-3.0-Pro"
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "glm-5-2-pinned-model-card",
+          "locator": "Benchmark table, MCP-Atlas Public Set row; Footnote MCP-Atlas settings"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The owner does not explicitly define the metric or label the score as a percentage.",
+        "Exact reasoning effort, temperature, context limit, harness version, and tool configuration are not reported.",
+        "Sample count per task, aggregation method, and inference hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it-aime-2026-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "gemma-4-26b-a4b-it",
+      "modelName": "Gemma 4 26B A4B IT",
+      "owner": "Google DeepMind",
+      "artifact": {
+        "repository": "google/gemma-4-26B-A4B-it",
+        "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "AIME",
+        "version": "2026",
+        "subset": "no tools"
+      },
+      "metric": {
+        "name": "accuracy",
+        "value": 88.3,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "model_stage",
+            "value": "instruction-tuned"
+          },
+          {
+            "name": "thinking_mode",
+            "value": true
+          },
+          {
+            "name": "tool_use",
+            "value": false
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "gemma-4-26b-a4b-it-pinned-model-card",
+          "locator": "Benchmark Results, Gemma 4 26B A4B column, AIME 2026 no tools row"
+        },
+        {
+          "sourceId": "gemma-4-technical-report",
+          "locator": "Table 5; all models are in thinking mode unless explicitly stated"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "Prompt, sampling parameters, sample count, and scoring implementation are not reported.",
+        "Benchmark task revision and evaluation harness are not reported.",
+        "Context limit, maximum output length, runtime, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it-livecodebench-v6-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "gemma-4-26b-a4b-it",
+      "modelName": "Gemma 4 26B A4B IT",
+      "owner": "Google DeepMind",
+      "artifact": {
+        "repository": "google/gemma-4-26B-A4B-it",
+        "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "LiveCodeBench",
+        "version": "v6",
+        "subset": null
+      },
+      "metric": {
+        "name": "owner-reported percentage",
+        "value": 77.1,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "model_stage",
+            "value": "instruction-tuned"
+          },
+          {
+            "name": "thinking_mode",
+            "value": true
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "gemma-4-26b-a4b-it-pinned-model-card",
+          "locator": "Benchmark Results, Gemma 4 26B A4B column, LiveCodeBench v6 row"
+        },
+        {
+          "sourceId": "gemma-4-technical-report",
+          "locator": "Table 5; all models are in thinking mode unless explicitly stated"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The exact LiveCodeBench metric, prompt, sampling parameters, and sample count are not reported.",
+        "Benchmark task revision and evaluation harness are not reported.",
+        "Context limit, maximum output length, runtime, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it-gpqa-diamond-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "gemma-4-26b-a4b-it",
+      "modelName": "Gemma 4 26B A4B IT",
+      "owner": "Google DeepMind",
+      "artifact": {
+        "repository": "google/gemma-4-26B-A4B-it",
+        "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52"
+      },
+      "artifactAssociation": "artifact_snapshot_associated",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "GPQA",
+        "version": null,
+        "subset": "Diamond"
+      },
+      "metric": {
+        "name": "accuracy",
+        "value": 82.3,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "model_stage",
+            "value": "instruction-tuned"
+          },
+          {
+            "name": "thinking_mode",
+            "value": true
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "gemma-4-26b-a4b-it-pinned-model-card",
+          "locator": "Benchmark Results, Gemma 4 26B A4B column, GPQA Diamond row"
+        },
+        {
+          "sourceId": "gemma-4-technical-report",
+          "locator": "Table 5; all models are in thinking mode unless explicitly stated"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "Prompt, shot count, sampling parameters, sample count, and scoring implementation are not reported.",
+        "Benchmark task revision and evaluation harness are not reported.",
+        "Context limit, maximum output length, runtime, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "qwen3-30b-a3b-gpqa-diamond-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "qwen3-30b-a3b",
+      "modelName": "Qwen3-30B-A3B",
+      "owner": "Qwen Team",
+      "artifact": {
+        "repository": "Qwen/Qwen3-30B-A3B",
+        "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39"
+      },
+      "artifactAssociation": "model_name_only",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "GPQA",
+        "version": null,
+        "subset": "Diamond"
+      },
+      "metric": {
+        "name": "averaged accuracy",
+        "value": 65.8,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "thinking_mode",
+            "value": true
+          },
+          {
+            "name": "temperature",
+            "value": 0.6
+          },
+          {
+            "name": "top_p",
+            "value": 0.95
+          },
+          {
+            "name": "top_k",
+            "value": 20
+          },
+          {
+            "name": "max_new_tokens",
+            "value": 32768
+          },
+          {
+            "name": "samples_per_query",
+            "value": 10
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "qwen3-technical-report",
+          "locator": "Section 4.2 Evaluation Setup and Table 15, Qwen3-30B-A3B Thinking column"
+        },
+        {
+          "sourceId": "qwen3-30b-a3b-pinned-model-card",
+          "locator": "Pinned artifact identity; the card links to general benchmark material but contains no values"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The technical report identifies the model by name but does not bind the result to artifact revision ad44e777bcd18fa416d9da3bd8f70d33ebb85d39.",
+        "Exact prompt, benchmark revision, and evaluation harness are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "qwen3-30b-a3b-aime-2025-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "qwen3-30b-a3b",
+      "modelName": "Qwen3-30B-A3B",
+      "owner": "Qwen Team",
+      "artifact": {
+        "repository": "Qwen/Qwen3-30B-A3B",
+        "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39"
+      },
+      "artifactAssociation": "model_name_only",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "AIME",
+        "version": "2025",
+        "subset": "Parts I and II"
+      },
+      "metric": {
+        "name": "averaged accuracy",
+        "value": 70.9,
+        "unit": "percentage_points",
+        "scale": "0-100",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "thinking_mode",
+            "value": true
+          },
+          {
+            "name": "temperature",
+            "value": 0.6
+          },
+          {
+            "name": "top_p",
+            "value": 0.95
+          },
+          {
+            "name": "top_k",
+            "value": 20
+          },
+          {
+            "name": "max_new_tokens",
+            "value": 38912
+          },
+          {
+            "name": "question_count",
+            "value": 30
+          },
+          {
+            "name": "samples_per_query",
+            "value": 64
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "qwen3-technical-report",
+          "locator": "Section 4.2 Evaluation Setup and Table 15, Qwen3-30B-A3B Thinking column, AIME 2025 row"
+        },
+        {
+          "sourceId": "qwen3-30b-a3b-pinned-model-card",
+          "locator": "Pinned artifact identity; the card links to general benchmark material but contains no values"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The technical report identifies the model by name but does not bind the result to artifact revision ad44e777bcd18fa416d9da3bd8f70d33ebb85d39.",
+        "Exact prompt text, scoring parser, and test-data revision are not reported.",
+        "Inference engine and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    },
+    {
+      "id": "qwen3-30b-a3b-livecodebench-v5-owner-reported",
+      "claimType": "owner_reported",
+      "modelId": "qwen3-30b-a3b",
+      "modelName": "Qwen3-30B-A3B",
+      "owner": "Qwen Team",
+      "artifact": {
+        "repository": "Qwen/Qwen3-30B-A3B",
+        "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39"
+      },
+      "artifactAssociation": "model_name_only",
+      "executionArtifactDigest": null,
+      "benchmark": {
+        "suite": "LiveCodeBench",
+        "version": "v5",
+        "subset": "2024-10 through 2025-02"
+      },
+      "metric": {
+        "name": "owner-reported score",
+        "value": 62.6,
+        "unit": "reported_score",
+        "scale": "0-100 as presented",
+        "direction": "higher_is_better"
+      },
+      "evaluation": {
+        "mode": "thinking",
+        "reportedSettings": [
+          {
+            "name": "thinking_mode",
+            "value": true
+          },
+          {
+            "name": "temperature",
+            "value": 0.6
+          },
+          {
+            "name": "top_p",
+            "value": 0.95
+          },
+          {
+            "name": "top_k",
+            "value": 20
+          },
+          {
+            "name": "max_new_tokens",
+            "value": 32768
+          },
+          {
+            "name": "benchmark_window",
+            "value": "2024-10 through 2025-02"
+          },
+          {
+            "name": "prompt_variant",
+            "value": "official prompt with the program-only restriction removed"
+          }
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "qwen3-technical-report",
+          "locator": "Section 4.2 Evaluation Setup and Table 15, Qwen3-30B-A3B Thinking column, LiveCodeBench v5 row"
+        },
+        {
+          "sourceId": "qwen3-30b-a3b-pinned-model-card",
+          "locator": "Pinned artifact identity; the card links to general benchmark material but contains no values"
+        }
+      ],
+      "comparisonEligible": false,
+      "missingContext": [
+        "The technical report identifies the model by name but does not bind the result to artifact revision ad44e777bcd18fa416d9da3bd8f70d33ebb85d39.",
+        "The report does not explicitly define the table's LiveCodeBench metric or sample count.",
+        "Exact task commit, harness version, inference engine, and hardware are not reported.",
+        "The provider does not publish a digest of the tensor artifact used for the evaluation."
+      ]
+    }
+  ],
+  "rawArtifacts": [],
+  "runs": []
+}

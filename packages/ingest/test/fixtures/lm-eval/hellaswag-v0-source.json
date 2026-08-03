@@ -1,0 +1,10 @@
+{
+  "sourceId": "eleutherai-lm-eval-hellaswag-v0-fixture",
+  "title": "EleutherAI lm-eval HellaSwag v0 regression fixture",
+  "publisher": "EleutherAI",
+  "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/f4d4b3de3ee6741a7151a9fe74945ee515262f4c/tests/testdata/hellaswag-v0-res.json",
+  "retrievedAt": "2026-08-03",
+  "fixture": true,
+  "license": "MIT",
+  "licenseLocator": "https://github.com/EleutherAI/lm-evaluation-harness/blob/f4d4b3de3ee6741a7151a9fe74945ee515262f4c/LICENSE.md"
+}

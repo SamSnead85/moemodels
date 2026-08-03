@@ -1,0 +1,190 @@
+name: Reproducible deployment card
+description: Submit an observed model × runtime × precision × hardware configuration with reviewable evidence.
+title: "[Deployment card]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A deployment card describes one observed configuration. It is not a universal recommendation, a production-readiness certification, or proof that another topology will behave the same way.
+
+        Remove credentials, internal hostnames, customer data, private prompts, and restricted artifacts before submitting. Estimates belong in assumptions, not measured-result fields.
+
+  - type: dropdown
+    id: intent
+    attributes:
+      label: Submission intent
+      options:
+        - New measured deployment card
+        - Independent reproduction of an existing card
+        - Correction or rerun of an existing card
+    validations:
+      required: true
+
+  - type: input
+    id: model_artifact
+    attributes:
+      label: Exact model artifact
+      description: Include model, checkpoint/revision, artifact filename, and hash when available.
+      placeholder: owner/model@revision — artifact — sha256
+    validations:
+      required: true
+
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime and exact version
+      description: Include a release version or commit, not only a runtime family.
+      placeholder: runtime 0.0.0 / commit abc123
+    validations:
+      required: true
+
+  - type: textarea
+    id: precision
+    attributes:
+      label: Precision and quantization
+      description: Identify weight/KV precision, quantization method and version, calibration details, and the exact resulting artifact.
+      placeholder: |
+        Weight precision:
+        KV-cache precision:
+        Quantization tool/version:
+        Method/calibration dataset:
+        Resulting artifact/hash:
+    validations:
+      required: true
+
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware topology
+      description: List accelerator count/SKU/VRAM, node layout, interconnect, CPU, RAM, storage, and relevant power or partition constraints.
+      placeholder: |
+        Nodes:
+        Accelerators per node + VRAM:
+        Intra-node interconnect:
+        Inter-node network:
+        CPU + system RAM:
+        Storage/filesystem:
+        Partitioning or virtualization:
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Software environment
+      description: Include OS/kernel, driver, accelerator toolkit, framework versions, container image and digest, and material environment variables.
+      placeholder: |
+        OS/kernel:
+        Driver/toolkit:
+        Frameworks:
+        Container image@digest:
+        Material environment settings:
+    validations:
+      required: true
+
+  - type: textarea
+    id: launch
+    attributes:
+      label: Sanitized launch command or configuration
+      description: Provide the exact command/config required to reproduce the run. Replace secrets with named placeholders.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: workload
+    attributes:
+      label: Workload definition
+      description: Describe dataset/request source, input/output token distributions, context, batch policy, concurrency, caching, warm-up, sampling, and request count.
+      placeholder: |
+        Workload or dataset/version:
+        Input token distribution:
+        Output token distribution:
+        Context limit used:
+        Batch/scheduler settings:
+        Concurrency/request rate:
+        Prefix/KV caching:
+        Warm-up and measured request count:
+        Sampling/reasoning settings:
+    validations:
+      required: true
+
+  - type: textarea
+    id: methodology
+    attributes:
+      label: Measurement methodology
+      description: Define metric boundaries, instrumentation, run count, aggregation, outlier/failure handling, and whether compilation/loading/warm-up are included.
+      placeholder: Explain exactly how another contributor should measure the same run.
+    validations:
+      required: true
+
+  - type: textarea
+    id: results
+    attributes:
+      label: Observed results
+      description: Include units, run count, central tendency, percentiles or variability, peak memory, failures, and uncertainty. Do not place estimates here.
+      placeholder: |
+        Successful runs / attempted runs:
+        Model load time:
+        Peak accelerator memory:
+        Time to first token (median/p95):
+        Inter-token latency (median/p95):
+        Aggregate input/output throughput:
+        Error/failure rate:
+        Variability or confidence interval:
+    validations:
+      required: true
+
+  - type: textarea
+    id: raw_artifacts
+    attributes:
+      label: Raw artifacts and checksums
+      description: Link machine-readable logs/results, sanitized configuration, and checksums. State artifact retention limits. Screenshots alone are insufficient.
+      placeholder: |
+        Raw result artifact URL + sha256:
+        Sanitized config URL + sha256:
+        Logs/trace URL + sha256:
+        Retention or access notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide ordered setup, launch, warm-up, execution, and analysis steps plus the expected acceptable range.
+      placeholder: |
+        1. Prepare the exact artifact and environment...
+        2. Launch with...
+        3. Warm up with...
+        4. Execute...
+        5. Analyze...
+        Expected range and tolerances:
+    validations:
+      required: true
+
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Limitations and non-generalizable conditions
+      description: Identify topology sensitivities, quality checks not performed, unstable behavior, failed runs, unavailable artifacts, or conditions that should block recommendation.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Submission checks
+      options:
+        - label: This submission identifies who ran the configuration, when it ran, and the exact versioned environment.
+          required: true
+        - label: The result fields contain observations, while estimates and inferences are labeled separately.
+          required: true
+        - label: Raw reviewable artifacts and enough reproduction detail are attached; screenshots are not the sole evidence.
+          required: true
+        - label: I removed credentials, private infrastructure details, customer data, proprietary prompts, and restricted artifacts.
+          required: true
+        - label: I have not generalized this run into an unsupported production recommendation or certification.
+          required: true
+        - label: I have the right to submit the configuration, measurements, and linked artifacts.
+          required: true

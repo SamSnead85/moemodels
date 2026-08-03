@@ -1,0 +1,25 @@
+# Dependencies and generated package output
+node_modules/
+packages/*/dist/
+coverage/
+
+# Local evidence output. Commit only deliberately reviewed fixtures.
+outputs/
+work/
+*.passport.local.json
+*.trial.local.json
+
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Tooling and operating-system noise
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*

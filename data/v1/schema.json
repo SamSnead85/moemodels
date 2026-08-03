@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moemodels.ai/schemas/registry-v1.json",
+  "title": "MOEModels registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "registryVersion", "generatedAt", "methodology", "sources", "models", "hardware", "compatibility"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "registryVersion": { "const": "1.0.0" },
+    "generatedAt": { "type": "string", "format": "date" },
+    "methodology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capacityUnit", "defaultReserveBasisPoints", "defaultAcceleratorsPerNode"],
+      "properties": {
+        "capacityUnit": { "const": "decimal-gigabytes" },
+        "defaultReserveBasisPoints": { "type": "integer", "minimum": 0, "maximum": 9999 },
+        "defaultAcceleratorsPerNode": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "models": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/model" }
+    },
+    "hardware": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/hardware" }
+    },
+    "compatibility": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/compatibility" }
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "locator": { "type": "string", "minLength": 1 }
+      }
+    },
+    "provenanceList": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/provenance" }
+    },
+    "integerClaim": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "value", "provenance"],
+          "properties": {
+            "status": { "const": "known" },
+            "value": { "type": "integer", "minimum": 1 },
+            "provenance": { "$ref": "#/$defs/provenanceList" }
+          }
+        },
+        { "$ref": "#/$defs/unknownClaim" }
+      ]
+    },
+    "stringClaim": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "value", "provenance"],
+          "properties": {
+            "status": { "const": "known" },
+            "value": { "type": "string", "minLength": 1 },
+            "provenance": { "$ref": "#/$defs/provenanceList" }
+          }
+        },
+        { "$ref": "#/$defs/unknownClaim" }
+      ]
+    },
+    "unknownClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason", "provenance"],
+      "properties": {
+        "status": { "const": "unknown" },
+        "reason": { "type": "string", "minLength": 1 },
+        "provenance": { "$ref": "#/$defs/provenanceList" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "publisher", "url", "retrievedAt"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "retrievedAt": { "type": "string", "format": "date" },
+        "publishedAt": { "type": "string", "format": "date" },
+        "locator": { "type": "string", "minLength": 1 }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision", "format", "manifestUrl", "provenance"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 3 },
+        "revision": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "format": { "const": "safetensors" },
+        "manifestUrl": { "type": "string", "format": "uri" },
+        "provenance": { "$ref": "#/$defs/provenanceList" }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "provider", "provenance", "artifact", "claims"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "provider": { "type": "string", "minLength": 1 },
+        "provenance": { "$ref": "#/$defs/provenanceList" },
+        "artifact": { "$ref": "#/$defs/artifact" },
+        "claims": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "totalParameters",
+            "activeParameters",
+            "artifactTensorBytes",
+            "contextTokens",
+            "routedExperts",
+            "expertsPerToken",
+            "nativeWeightFormat",
+            "license"
+          ],
+          "properties": {
+            "totalParameters": { "$ref": "#/$defs/integerClaim" },
+            "activeParameters": { "$ref": "#/$defs/integerClaim" },
+            "artifactTensorBytes": { "$ref": "#/$defs/integerClaim" },
+            "contextTokens": { "$ref": "#/$defs/integerClaim" },
+            "routedExperts": { "$ref": "#/$defs/integerClaim" },
+            "expertsPerToken": { "$ref": "#/$defs/integerClaim" },
+            "nativeWeightFormat": { "$ref": "#/$defs/stringClaim" },
+            "license": { "$ref": "#/$defs/stringClaim" }
+          }
+        }
+      }
+    },
+    "hardware": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "vendor", "aliases", "provenance", "claims"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "vendor": { "type": "string", "minLength": 1 },
+        "aliases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "provenance": { "$ref": "#/$defs/provenanceList" },
+        "claims": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["memoryGigabytes"],
+          "properties": {
+            "memoryGigabytes": { "$ref": "#/$defs/integerClaim" }
+          }
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "modelId", "hardwareId", "framework", "status", "evidenceLevel", "reason", "provenance"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "modelId": { "type": "string", "minLength": 1 },
+        "hardwareId": { "type": "string", "minLength": 1 },
+        "framework": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["supported", "unsupported", "unknown"] },
+        "evidenceLevel": {
+          "enum": ["owner_declared", "runtime_implemented", "reproduced", "known_issue", "unsupported", "unknown"]
+        },
+        "reason": { "type": "string", "minLength": 1 },
+        "provenance": { "$ref": "#/$defs/provenanceList" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "unknown" } }, "required": ["status"] },
+          "then": { "properties": { "evidenceLevel": { "enum": ["unknown", "known_issue"] } } }
+        },
+        {
+          "if": { "properties": { "status": { "const": "supported" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "evidenceLevel": {
+                "enum": ["owner_declared", "runtime_implemented", "reproduced"]
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "unsupported" } }, "required": ["status"] },
+          "then": { "properties": { "evidenceLevel": { "const": "unsupported" } } }
+        }
+      ]
+    }
+  }
+}

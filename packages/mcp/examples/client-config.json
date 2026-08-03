@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "moemodels": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/moemodels/packages/mcp/dist/index.js"
+      ]
+    }
+  }
+}

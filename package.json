@@ -1,0 +1,54 @@
+{
+  "name": "moemodels-monorepo",
+  "version": "0.1.0",
+  "description": "Open tooling and evidence formats for planning, measuring, and verifying mixture-of-experts deployments.",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "packageManager": "npm@11.6.2",
+  "workspaces": [
+    "data/v1",
+    "data/evaluations/v1",
+    "packages/core",
+    "packages/ingest",
+    "packages/cli",
+    "packages/bench",
+    "packages/sdk",
+    "packages/mcp",
+    "packages/moemodels"
+  ],
+  "scripts": {
+    "build:core": "npm run build --workspace @moemodels/core",
+    "build:ingest": "npm run build:core && npm run build --workspace @moemodels/ingest",
+    "build:cli": "npm run build:ingest && npm run build --workspace @moemodels/cli",
+    "build:bench": "npm run build --workspace @moemodels/bench",
+    "build:sdk": "npm run build:core && npm run build --workspace @moemodels/sdk",
+    "build:mcp": "npm run build:core && npm run build --workspace @moemodels/mcp",
+    "build:launcher": "npm run build:cli && npm run build:bench && npm run build --workspace moemodels",
+    "build:packages": "npm run build:launcher && npm run build:sdk && npm run build:mcp",
+    "build": "npm run build:packages",
+    "test:unit": "npm run build:packages && node --test packages/core/test/*.test.mjs packages/ingest/test/*.test.mjs packages/cli/test/*.test.mjs packages/bench/test/*.test.mjs packages/sdk/test/*.test.mjs packages/mcp/test/*.test.mjs packages/moemodels/test/*.test.mjs",
+    "test:package-smoke": "npm run build:packages && node scripts/package-smoke.mjs",
+    "check:public-boundary": "node scripts/check-public-boundary.mjs",
+    "test": "npm run check:public-boundary && npm run test:unit && npm run test:package-smoke",
+    "registry:validate": "npm run build:packages --silent && node packages/moemodels/dist/index.js validate --json",
+    "evaluations:validate": "npm run build:packages --silent && node packages/moemodels/dist/index.js validate-evals --json",
+    "passport:verify": "npm run build:bench --silent && node packages/bench/dist/cli.js verify",
+    "moemodels": "npm run build:packages --silent && node packages/moemodels/dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "typescript": "5.9.3"
+  }
+}
