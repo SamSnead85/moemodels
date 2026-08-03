@@ -18,7 +18,7 @@
     "@moemodels/cli": "0.1.0"
   },
   "devDependencies": {
-    "@types/node": "^22.19.19",
+    "@types/node": "^26.1.2",
     "typescript": "^5.9.3"
   },
   "repository": {
