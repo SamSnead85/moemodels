@@ -74,7 +74,7 @@ function modernArtifact(overrides = {}) {
     config: {
       model: "hf",
       model_args:
-        "pretrained=moonshotai/Kimi-K3,dtype=bfloat16,quantization=none,api_key=MOEMODELS_TEST_MODEL_ARG_SENTINEL,custom_option=drop-me",
+        "pretrained=moonshotai/Kimi-K3,dtype=bfloat16,quantization=none,api_key=supersecret,custom_option=drop-me",
       model_sha: "9f62e4e9fffbd0a83ddd60e1c209d828994b3569",
       model_dtype: "torch.bfloat16",
       batch_size: "8",
@@ -84,10 +84,7 @@ function modernArtifact(overrides = {}) {
       numpy_seed: 1234,
       torch_seed: 1234,
       fewshot_seed: 1234,
-      gen_kwargs: {
-        temperature: 0,
-        ["api" + "_" + "key"]: "MOEMODELS_TEST_GENERATION_ARG_SENTINEL",
-      },
+      gen_kwargs: { temperature: 0, api_key: "generation-secret" },
     },
     git_hash: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     date: 1_762_318_309.331636,
@@ -218,6 +215,30 @@ test("modern string generation kwargs normalize through the safe allowlist", () 
   assert.doesNotMatch(serializeNormalizedLmEvalArtifact(normalized), /drop-me/);
 });
 
+test("numeric generation arguments avoid ambiguous matching on long untrusted strings", () => {
+  const base = modernArtifact();
+  const longNonNumeric = `${"99".repeat(2048)}x`;
+  const normalized = normalizeLmEvalArtifact(
+    encode(
+      modernArtifact({
+        config: {
+          ...base.config,
+          gen_kwargs: `temperature=1.,top_p=.95,top_k=1e+3,min_p=-0.5,max_new_tokens=${longNonNumeric}`,
+        },
+      }),
+    ),
+    source(),
+  );
+
+  assert.deepEqual(normalized.run.execution.generationConfig.value, {
+    max_new_tokens: longNonNumeric,
+    min_p: -0.5,
+    temperature: 1,
+    top_k: 1000,
+    top_p: 0.95,
+  });
+});
+
 test("exact raw model SHA can bind a registry artifact but never cures other unknowns", () => {
   const normalized = normalizeLmEvalArtifact(encode(modernArtifact()), source());
   assert.equal(normalized.run.model.binding, "artifact_hash_match");
@@ -261,7 +282,7 @@ test("exact raw model SHA can bind a registry artifact but never cures other unk
 test("samples, free-form environment, and unsafe arguments never enter normalized output", () => {
   const normalized = normalizeLmEvalArtifact(encode(modernArtifact()), source());
   const output = serializeNormalizedLmEvalArtifact(normalized);
-  assert.doesNotMatch(output, /MOEMODELS_TEST_MODEL_ARG_SENTINEL|MOEMODELS_TEST_GENERATION_ARG_SENTINEL|private prompt|private response|Private host/);
+  assert.doesNotMatch(output, /supersecret|generation-secret|private prompt|private response|Private host/);
   assert.ok(normalized.run.diagnostics.some((item) => item.code === "samples_not_ingested_v0_1"));
   assert.ok(normalized.run.diagnostics.some((item) => item.code === "freeform_environment_not_copied"));
   assert.ok(normalized.run.diagnostics.some((item) => item.code === "sensitive_model_arg_dropped"));

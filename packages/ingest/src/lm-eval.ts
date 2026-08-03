@@ -44,6 +44,9 @@ const GENERATION_ALLOWLIST = new Set([
   "do_sample",
   "until",
 ]);
+// Digits after the decimal point are reachable only after a literal dot. This
+// keeps matching linear-time for long untrusted numeric strings.
+const DECIMAL_LITERAL = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
 const STRUCTURAL_RESULT_KEYS = new Set(["alias", "name", "sample_len", "sample_count"]);
 
 type JsonObject = Record<string, unknown>;
@@ -390,7 +393,7 @@ function safeGenerationConfig(
         config[key] = rawEntry.toLowerCase() === "true";
       } else if (/^null$/i.test(rawEntry)) {
         config[key] = null;
-      } else if (/^-?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(rawEntry)) {
+      } else if (DECIMAL_LITERAL.test(rawEntry)) {
         const numeric = Number(rawEntry);
         config[key] = Number.isFinite(numeric) ? numeric : rawEntry;
       } else {
