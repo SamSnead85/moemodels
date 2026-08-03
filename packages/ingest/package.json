@@ -1,0 +1,50 @@
+{
+  "name": "@moemodels/ingest",
+  "version": "0.1.0",
+  "description": "Deterministic, Node-only evidence ingestion adapters for MOEModels.ai.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./lm-eval": {
+      "types": "./dist/lm-eval.d.ts",
+      "import": "./dist/lm-eval.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@moemodels/core": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git",
+    "directory": "packages/ingest"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels/tree/main/packages/ingest#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
+}

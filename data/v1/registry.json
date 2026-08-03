@@ -1,0 +1,713 @@
+{
+  "$schema": "./schema.json",
+  "registryVersion": "1.0.0",
+  "generatedAt": "2026-08-02",
+  "methodology": {
+    "capacityUnit": "decimal-gigabytes",
+    "defaultReserveBasisPoints": 1300,
+    "defaultAcceleratorsPerNode": 8
+  },
+  "sources": [
+    {
+      "id": "kimi-k3-github",
+      "title": "Moonshot AI — Kimi K3",
+      "publisher": "Moonshot AI",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "kimi-k3-config",
+      "title": "Kimi K3 pinned config",
+      "publisher": "Moonshot AI / Hugging Face",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/config.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "kimi-k3-manifest",
+      "title": "Kimi K3 pinned tensor manifest",
+      "publisher": "Moonshot AI / Hugging Face",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/model.safetensors.index.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "deepseek-v4-release",
+      "title": "DeepSeek V4 Pro release",
+      "publisher": "DeepSeek",
+      "url": "https://api-docs.deepseek.com/news/news260424",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "deepseek-v4-config",
+      "title": "DeepSeek V4 Pro pinned config",
+      "publisher": "DeepSeek / Hugging Face",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/b5968e9190ef611bbf34a7229255be88a0e937c1/config.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "deepseek-v4-manifest",
+      "title": "DeepSeek V4 Pro pinned tensor manifest",
+      "publisher": "DeepSeek / Hugging Face",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/b5968e9190ef611bbf34a7229255be88a0e937c1/model.safetensors.index.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "glm-5-2-release",
+      "title": "GLM-5.2 release",
+      "publisher": "Z.ai",
+      "url": "https://z.ai/blog/glm-5.2",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "glm-5-2-config",
+      "title": "GLM-5.2 pinned config",
+      "publisher": "Z.ai / Hugging Face",
+      "url": "https://huggingface.co/zai-org/GLM-5.2/blob/b4734de4facf877f85769a911abafc5283eab3d9/config.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "glm-5-2-manifest",
+      "title": "GLM-5.2 pinned tensor manifest",
+      "publisher": "Z.ai / Hugging Face",
+      "url": "https://huggingface.co/zai-org/GLM-5.2/blob/b4734de4facf877f85769a911abafc5283eab3d9/model.safetensors.index.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "gemma-4-release",
+      "title": "Google introduces Gemma 4",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "gemma-4-config",
+      "title": "Gemma 4 26B A4B IT pinned config",
+      "publisher": "Google / Hugging Face",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/config.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "gemma-4-manifest",
+      "title": "Gemma 4 26B A4B IT pinned tensor manifest",
+      "publisher": "Google / Hugging Face",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/model.safetensors.index.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "gemma-4-readme",
+      "title": "Gemma 4 26B A4B IT pinned model card",
+      "publisher": "Google / Hugging Face",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/README.md",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "qwen3-github",
+      "title": "Qwen3",
+      "publisher": "Qwen Team",
+      "url": "https://github.com/QwenLM/Qwen3",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "qwen3-model-card",
+      "title": "Qwen3-30B-A3B pinned model card",
+      "publisher": "Qwen Team / Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/tree/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "qwen3-config",
+      "title": "Qwen3-30B-A3B pinned config",
+      "publisher": "Qwen Team / Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39/config.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "qwen3-manifest",
+      "title": "Qwen3-30B-A3B pinned tensor manifest",
+      "publisher": "Qwen Team / Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39/model.safetensors.index.json",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "nvidia-h200",
+      "title": "NVIDIA H200 Tensor Core GPU",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/h200/",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "nvidia-h100",
+      "title": "NVIDIA H100 Tensor Core GPU",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/data-center/h100/",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "nvidia-a100",
+      "title": "NVIDIA A100 Tensor Core GPU",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet-nvidia-us-2188504-web.pdf",
+      "retrievedAt": "2026-08-02"
+    },
+    {
+      "id": "nvidia-rtx-6000-ada",
+      "title": "NVIDIA RTX 6000 Ada Generation",
+      "publisher": "NVIDIA",
+      "url": "https://www.nvidia.com/en-us/products/workstations/rtx-6000/",
+      "retrievedAt": "2026-08-02"
+    }
+  ],
+  "models": [
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "provider": "Moonshot AI",
+      "provenance": [
+        { "sourceId": "kimi-k3-github" }
+      ],
+      "artifact": {
+        "repository": "moonshotai/Kimi-K3",
+        "revision": "9f62e4e9fffbd0a83ddd60e1c209d828994b3569",
+        "format": "safetensors",
+        "manifestUrl": "https://huggingface.co/moonshotai/Kimi-K3/blob/9f62e4e9fffbd0a83ddd60e1c209d828994b3569/model.safetensors.index.json",
+        "provenance": [
+          { "sourceId": "kimi-k3-config", "locator": "pinned revision" },
+          { "sourceId": "kimi-k3-manifest", "locator": "safetensors artifact manifest" }
+        ]
+      },
+      "claims": {
+        "totalParameters": {
+          "status": "known",
+          "value": 2800000000000,
+          "provenance": [{ "sourceId": "kimi-k3-github", "locator": "model architecture" }]
+        },
+        "activeParameters": {
+          "status": "known",
+          "value": 104000000000,
+          "provenance": [{ "sourceId": "kimi-k3-github", "locator": "model architecture" }]
+        },
+        "artifactTensorBytes": {
+          "status": "known",
+          "value": 1560860324864,
+          "provenance": [{ "sourceId": "kimi-k3-manifest", "locator": "metadata.total_size" }]
+        },
+        "contextTokens": {
+          "status": "known",
+          "value": 1048576,
+          "provenance": [{ "sourceId": "kimi-k3-config", "locator": "text_config.max_position_embeddings" }]
+        },
+        "routedExperts": {
+          "status": "known",
+          "value": 896,
+          "provenance": [{ "sourceId": "kimi-k3-config", "locator": "text_config.num_experts" }]
+        },
+        "expertsPerToken": {
+          "status": "known",
+          "value": 16,
+          "provenance": [{ "sourceId": "kimi-k3-config", "locator": "text_config.num_experts_per_token" }]
+        },
+        "nativeWeightFormat": {
+          "status": "known",
+          "value": "MXFP4",
+          "provenance": [{ "sourceId": "kimi-k3-github", "locator": "checkpoint format" }]
+        },
+        "license": {
+          "status": "unknown",
+          "reason": "A checkpoint license identifier was not verified in this registry revision.",
+          "provenance": [{ "sourceId": "kimi-k3-github" }]
+        }
+      }
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "provider": "DeepSeek",
+      "provenance": [{ "sourceId": "deepseek-v4-release" }],
+      "artifact": {
+        "repository": "deepseek-ai/DeepSeek-V4-Pro",
+        "revision": "b5968e9190ef611bbf34a7229255be88a0e937c1",
+        "format": "safetensors",
+        "manifestUrl": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/b5968e9190ef611bbf34a7229255be88a0e937c1/model.safetensors.index.json",
+        "provenance": [
+          { "sourceId": "deepseek-v4-config", "locator": "pinned revision" },
+          { "sourceId": "deepseek-v4-manifest", "locator": "safetensors artifact manifest" }
+        ]
+      },
+      "claims": {
+        "totalParameters": {
+          "status": "known",
+          "value": 1600000000000,
+          "provenance": [{ "sourceId": "deepseek-v4-release", "locator": "model architecture" }]
+        },
+        "activeParameters": {
+          "status": "known",
+          "value": 49000000000,
+          "provenance": [{ "sourceId": "deepseek-v4-release", "locator": "model architecture" }]
+        },
+        "artifactTensorBytes": {
+          "status": "known",
+          "value": 864704792696,
+          "provenance": [{ "sourceId": "deepseek-v4-manifest", "locator": "metadata.total_size" }]
+        },
+        "contextTokens": {
+          "status": "known",
+          "value": 1048576,
+          "provenance": [{ "sourceId": "deepseek-v4-config", "locator": "max_position_embeddings" }]
+        },
+        "routedExperts": {
+          "status": "known",
+          "value": 384,
+          "provenance": [{ "sourceId": "deepseek-v4-config", "locator": "n_routed_experts" }]
+        },
+        "expertsPerToken": {
+          "status": "known",
+          "value": 6,
+          "provenance": [{ "sourceId": "deepseek-v4-config", "locator": "num_experts_per_tok" }]
+        },
+        "nativeWeightFormat": {
+          "status": "known",
+          "value": "mixed precision",
+          "provenance": [{ "sourceId": "deepseek-v4-release", "locator": "checkpoint format" }]
+        },
+        "license": {
+          "status": "unknown",
+          "reason": "A checkpoint license identifier was not verified in this registry revision.",
+          "provenance": [{ "sourceId": "deepseek-v4-release" }]
+        }
+      }
+    },
+    {
+      "id": "glm-5-2",
+      "name": "GLM-5.2",
+      "provider": "Z.ai",
+      "provenance": [{ "sourceId": "glm-5-2-release" }],
+      "artifact": {
+        "repository": "zai-org/GLM-5.2",
+        "revision": "b4734de4facf877f85769a911abafc5283eab3d9",
+        "format": "safetensors",
+        "manifestUrl": "https://huggingface.co/zai-org/GLM-5.2/blob/b4734de4facf877f85769a911abafc5283eab3d9/model.safetensors.index.json",
+        "provenance": [
+          { "sourceId": "glm-5-2-config", "locator": "pinned revision" },
+          { "sourceId": "glm-5-2-manifest", "locator": "safetensors artifact manifest" }
+        ]
+      },
+      "claims": {
+        "totalParameters": {
+          "status": "known",
+          "value": 753000000000,
+          "provenance": [{ "sourceId": "glm-5-2-release", "locator": "model architecture" }]
+        },
+        "activeParameters": {
+          "status": "unknown",
+          "reason": "The reviewed release and pinned config do not establish an active-parameter count.",
+          "provenance": [{ "sourceId": "glm-5-2-release" }, { "sourceId": "glm-5-2-config" }]
+        },
+        "artifactTensorBytes": {
+          "status": "known",
+          "value": 1506659919872,
+          "provenance": [{ "sourceId": "glm-5-2-manifest", "locator": "metadata.total_size" }]
+        },
+        "contextTokens": {
+          "status": "known",
+          "value": 1048576,
+          "provenance": [{ "sourceId": "glm-5-2-config", "locator": "max_position_embeddings" }]
+        },
+        "routedExperts": {
+          "status": "known",
+          "value": 256,
+          "provenance": [{ "sourceId": "glm-5-2-config", "locator": "n_routed_experts" }]
+        },
+        "expertsPerToken": {
+          "status": "known",
+          "value": 8,
+          "provenance": [{ "sourceId": "glm-5-2-config", "locator": "num_experts_per_tok" }]
+        },
+        "nativeWeightFormat": {
+          "status": "known",
+          "value": "BF16",
+          "provenance": [{ "sourceId": "glm-5-2-config", "locator": "dtype" }]
+        },
+        "license": {
+          "status": "unknown",
+          "reason": "A checkpoint license identifier was not verified in this registry revision.",
+          "provenance": [{ "sourceId": "glm-5-2-release" }]
+        }
+      }
+    },
+    {
+      "id": "gemma-4-26b-a4b-it",
+      "name": "Gemma 4 26B A4B IT",
+      "provider": "Google",
+      "provenance": [{ "sourceId": "gemma-4-release" }],
+      "artifact": {
+        "repository": "google/gemma-4-26B-A4B-it",
+        "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52",
+        "format": "safetensors",
+        "manifestUrl": "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/model.safetensors.index.json",
+        "provenance": [
+          { "sourceId": "gemma-4-config", "locator": "pinned revision" },
+          { "sourceId": "gemma-4-manifest", "locator": "safetensors artifact manifest" }
+        ]
+      },
+      "claims": {
+        "totalParameters": {
+          "status": "known",
+          "value": 25200000000,
+          "provenance": [{ "sourceId": "gemma-4-readme", "locator": "model architecture table: Total Parameters" }]
+        },
+        "activeParameters": {
+          "status": "known",
+          "value": 3800000000,
+          "provenance": [{ "sourceId": "gemma-4-readme", "locator": "model architecture table: Active Parameters" }]
+        },
+        "artifactTensorBytes": {
+          "status": "known",
+          "value": 51611872412,
+          "provenance": [{ "sourceId": "gemma-4-manifest", "locator": "metadata.total_size" }]
+        },
+        "contextTokens": {
+          "status": "known",
+          "value": 262144,
+          "provenance": [{ "sourceId": "gemma-4-config", "locator": "text_config.max_position_embeddings" }]
+        },
+        "routedExperts": {
+          "status": "known",
+          "value": 128,
+          "provenance": [{ "sourceId": "gemma-4-config", "locator": "text_config.num_experts" }]
+        },
+        "expertsPerToken": {
+          "status": "known",
+          "value": 8,
+          "provenance": [{ "sourceId": "gemma-4-config", "locator": "text_config.top_k_experts" }]
+        },
+        "nativeWeightFormat": {
+          "status": "known",
+          "value": "BF16",
+          "provenance": [{ "sourceId": "gemma-4-config", "locator": "text_config.dtype" }]
+        },
+        "license": {
+          "status": "unknown",
+          "reason": "A checkpoint license identifier was not verified in this registry revision.",
+          "provenance": [{ "sourceId": "gemma-4-readme" }]
+        }
+      }
+    },
+    {
+      "id": "qwen3-30b-a3b",
+      "name": "Qwen3-30B-A3B",
+      "provider": "Qwen Team",
+      "provenance": [{ "sourceId": "qwen3-github" }, { "sourceId": "qwen3-model-card" }],
+      "artifact": {
+        "repository": "Qwen/Qwen3-30B-A3B",
+        "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
+        "format": "safetensors",
+        "manifestUrl": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39/model.safetensors.index.json",
+        "provenance": [
+          { "sourceId": "qwen3-model-card", "locator": "pinned revision" },
+          { "sourceId": "qwen3-manifest", "locator": "safetensors artifact manifest" }
+        ]
+      },
+      "claims": {
+        "totalParameters": {
+          "status": "known",
+          "value": 30500000000,
+          "provenance": [{ "sourceId": "qwen3-model-card", "locator": "model architecture" }]
+        },
+        "activeParameters": {
+          "status": "known",
+          "value": 3300000000,
+          "provenance": [{ "sourceId": "qwen3-model-card", "locator": "model architecture" }]
+        },
+        "artifactTensorBytes": {
+          "status": "known",
+          "value": 61064245248,
+          "provenance": [{ "sourceId": "qwen3-manifest", "locator": "metadata.total_size" }]
+        },
+        "contextTokens": {
+          "status": "known",
+          "value": 32768,
+          "provenance": [{ "sourceId": "qwen3-model-card", "locator": "native context length" }]
+        },
+        "routedExperts": {
+          "status": "known",
+          "value": 128,
+          "provenance": [{ "sourceId": "qwen3-config", "locator": "num_experts" }]
+        },
+        "expertsPerToken": {
+          "status": "known",
+          "value": 8,
+          "provenance": [{ "sourceId": "qwen3-config", "locator": "num_experts_per_tok" }]
+        },
+        "nativeWeightFormat": {
+          "status": "known",
+          "value": "BF16",
+          "provenance": [{ "sourceId": "qwen3-config", "locator": "torch_dtype" }]
+        },
+        "license": {
+          "status": "unknown",
+          "reason": "A checkpoint license identifier was not verified in this registry revision.",
+          "provenance": [{ "sourceId": "qwen3-model-card" }]
+        }
+      }
+    }
+  ],
+  "hardware": [
+    {
+      "id": "h200",
+      "name": "NVIDIA H200 SXM",
+      "vendor": "NVIDIA",
+      "aliases": ["h200", "h200-sxm", "nvidia/h200-sxm-141gb"],
+      "provenance": [{ "sourceId": "nvidia-h200" }],
+      "claims": {
+        "memoryGigabytes": {
+          "status": "known",
+          "value": 141,
+          "provenance": [{ "sourceId": "nvidia-h200", "locator": "GPU memory: 141 GB" }]
+        }
+      }
+    },
+    {
+      "id": "h100",
+      "name": "NVIDIA H100 SXM",
+      "vendor": "NVIDIA",
+      "aliases": ["h100", "h100-sxm", "nvidia/h100-sxm-80gb"],
+      "provenance": [{ "sourceId": "nvidia-h100" }],
+      "claims": {
+        "memoryGigabytes": {
+          "status": "known",
+          "value": 80,
+          "provenance": [{ "sourceId": "nvidia-h100", "locator": "GPU memory: 80 GB" }]
+        }
+      }
+    },
+    {
+      "id": "a100",
+      "name": "NVIDIA A100 SXM 80GB",
+      "vendor": "NVIDIA",
+      "aliases": ["a100", "a100-80gb", "nvidia/a100-sxm-80gb"],
+      "provenance": [{ "sourceId": "nvidia-a100" }],
+      "claims": {
+        "memoryGigabytes": {
+          "status": "known",
+          "value": 80,
+          "provenance": [{ "sourceId": "nvidia-a100", "locator": "GPU memory: 80 GB" }]
+        }
+      }
+    },
+    {
+      "id": "rtx6000",
+      "name": "NVIDIA RTX 6000 Ada Generation",
+      "vendor": "NVIDIA",
+      "aliases": ["rtx6000", "rtx-6000-ada", "nvidia/rtx-6000-ada-48gb"],
+      "provenance": [{ "sourceId": "nvidia-rtx-6000-ada" }],
+      "claims": {
+        "memoryGigabytes": {
+          "status": "known",
+          "value": 48,
+          "provenance": [{ "sourceId": "nvidia-rtx-6000-ada", "locator": "GPU memory: 48 GB" }]
+        }
+      }
+    }
+  ],
+  "compatibility": [
+    {
+      "id": "kimi-k3--h200",
+      "modelId": "kimi-k3",
+      "hardwareId": "h200",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "kimi-k3-github" }, { "sourceId": "nvidia-h200" }]
+    },
+    {
+      "id": "kimi-k3--h100",
+      "modelId": "kimi-k3",
+      "hardwareId": "h100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "kimi-k3-github" }, { "sourceId": "nvidia-h100" }]
+    },
+    {
+      "id": "kimi-k3--a100",
+      "modelId": "kimi-k3",
+      "hardwareId": "a100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "kimi-k3-github" }, { "sourceId": "nvidia-a100" }]
+    },
+    {
+      "id": "kimi-k3--rtx6000",
+      "modelId": "kimi-k3",
+      "hardwareId": "rtx6000",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "kimi-k3-github" }, { "sourceId": "nvidia-rtx-6000-ada" }]
+    },
+    {
+      "id": "deepseek-v4-pro--h200",
+      "modelId": "deepseek-v4-pro",
+      "hardwareId": "h200",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "deepseek-v4-release" }, { "sourceId": "nvidia-h200" }]
+    },
+    {
+      "id": "deepseek-v4-pro--h100",
+      "modelId": "deepseek-v4-pro",
+      "hardwareId": "h100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "deepseek-v4-release" }, { "sourceId": "nvidia-h100" }]
+    },
+    {
+      "id": "deepseek-v4-pro--a100",
+      "modelId": "deepseek-v4-pro",
+      "hardwareId": "a100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "deepseek-v4-release" }, { "sourceId": "nvidia-a100" }]
+    },
+    {
+      "id": "deepseek-v4-pro--rtx6000",
+      "modelId": "deepseek-v4-pro",
+      "hardwareId": "rtx6000",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "deepseek-v4-release" }, { "sourceId": "nvidia-rtx-6000-ada" }]
+    },
+    {
+      "id": "glm-5-2--h200",
+      "modelId": "glm-5-2",
+      "hardwareId": "h200",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "glm-5-2-release" }, { "sourceId": "nvidia-h200" }]
+    },
+    {
+      "id": "glm-5-2--h100",
+      "modelId": "glm-5-2",
+      "hardwareId": "h100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "glm-5-2-release" }, { "sourceId": "nvidia-h100" }]
+    },
+    {
+      "id": "glm-5-2--a100",
+      "modelId": "glm-5-2",
+      "hardwareId": "a100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "glm-5-2-release" }, { "sourceId": "nvidia-a100" }]
+    },
+    {
+      "id": "glm-5-2--rtx6000",
+      "modelId": "glm-5-2",
+      "hardwareId": "rtx6000",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "glm-5-2-release" }, { "sourceId": "nvidia-rtx-6000-ada" }]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it--h200",
+      "modelId": "gemma-4-26b-a4b-it",
+      "hardwareId": "h200",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "gemma-4-release" }, { "sourceId": "nvidia-h200" }]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it--h100",
+      "modelId": "gemma-4-26b-a4b-it",
+      "hardwareId": "h100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "gemma-4-release" }, { "sourceId": "nvidia-h100" }]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it--a100",
+      "modelId": "gemma-4-26b-a4b-it",
+      "hardwareId": "a100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "gemma-4-release" }, { "sourceId": "nvidia-a100" }]
+    },
+    {
+      "id": "gemma-4-26b-a4b-it--rtx6000",
+      "modelId": "gemma-4-26b-a4b-it",
+      "hardwareId": "rtx6000",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "gemma-4-release" }, { "sourceId": "nvidia-rtx-6000-ada" }]
+    },
+    {
+      "id": "qwen3-30b-a3b--h200",
+      "modelId": "qwen3-30b-a3b",
+      "hardwareId": "h200",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "qwen3-model-card" }, { "sourceId": "nvidia-h200" }]
+    },
+    {
+      "id": "qwen3-30b-a3b--h100",
+      "modelId": "qwen3-30b-a3b",
+      "hardwareId": "h100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "qwen3-model-card" }, { "sourceId": "nvidia-h100" }]
+    },
+    {
+      "id": "qwen3-30b-a3b--a100",
+      "modelId": "qwen3-30b-a3b",
+      "hardwareId": "a100",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "qwen3-model-card" }, { "sourceId": "nvidia-a100" }]
+    },
+    {
+      "id": "qwen3-30b-a3b--rtx6000",
+      "modelId": "qwen3-30b-a3b",
+      "hardwareId": "rtx6000",
+      "framework": "unspecified",
+      "status": "unknown",
+      "evidenceLevel": "unknown",
+      "reason": "No framework-specific runtime support evidence is encoded in registry v1; unknown does not mean unsupported.",
+      "provenance": [{ "sourceId": "qwen3-model-card" }, { "sourceId": "nvidia-rtx-6000-ada" }]
+    }
+  ]
+}

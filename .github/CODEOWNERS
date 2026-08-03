@@ -1,0 +1,21 @@
+# Default review owner
+* @SamSnead85
+
+# Security and release boundaries
+/.github/CODEOWNERS @SamSnead85
+/.github/workflows/ @SamSnead85
+/action.yml @SamSnead85
+/SECURITY.md @SamSnead85
+/RELEASING.md @SamSnead85
+/package.json @SamSnead85
+/package-lock.json @SamSnead85
+
+# Evidence identity, methodology, and admission boundaries
+/data/ @SamSnead85
+/docs/DEPLOYBENCH_V0_1.md @SamSnead85
+/docs/DEPLOYMENT_PASSPORT_V0_2.md @SamSnead85
+/packages/bench/ @SamSnead85
+/packages/core/ @SamSnead85
+/packages/ingest/ @SamSnead85
+/LICENSE @SamSnead85
+/NOTICE @SamSnead85

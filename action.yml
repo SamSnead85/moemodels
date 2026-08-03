@@ -1,0 +1,31 @@
+name: Verify a DeployBench Evidence Passport
+description: Recompute and validate a MOEModels Passport without trusting its self-declared deployment identity.
+author: MOEModels contributors
+branding:
+  icon: shield
+  color: purple
+inputs:
+  passport:
+    description: Path to a DeployBench Evidence Passport JSON file in the caller workspace.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Use a supported Node.js runtime
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: 22.13.0
+
+    - name: Install the pinned verifier toolchain
+      shell: bash
+      run: npm ci --ignore-scripts --no-audit --no-fund --prefix "$GITHUB_ACTION_PATH"
+
+    - name: Build the verifier from the tagged source
+      shell: bash
+      run: npm run build:bench --silent --prefix "$GITHUB_ACTION_PATH"
+
+    - name: Verify Passport integrity and semantics
+      shell: bash
+      env:
+        MOEMODELS_PASSPORT_PATH: ${{ inputs.passport }}
+      run: node "$GITHUB_ACTION_PATH/packages/bench/dist/cli.js" verify "$MOEMODELS_PASSPORT_PATH" --json

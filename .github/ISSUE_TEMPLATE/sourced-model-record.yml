@@ -1,0 +1,130 @@
+name: Sourced model record
+description: Propose a new version-specific model record or correct an existing sourced claim.
+title: "[Model record]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for improving the evidence layer. This form proposes a record for review; it does not make the model or claim verified.
+
+        Prefer primary sources, identify the exact version/artifact, attach every material value to a locator, and use `unknown` when evidence is incomplete. Do not paste long copyrighted passages.
+
+  - type: dropdown
+    id: intent
+    attributes:
+      label: Record intent
+      description: What kind of review are you requesting?
+      options:
+        - New version-specific model record
+        - Update to an existing model version
+        - Correction to a sourced claim
+        - Deprecation or release-lineage update
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: Exact model name
+      description: Use the name published by the model owner.
+      placeholder: ExampleMoE-72B-A8B
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version, checkpoint, or release identifier
+      description: Include a tag, commit, checkpoint, dated release, or artifact revision. Do not submit only a family name.
+      placeholder: v1.1 / repository tag / checkpoint revision
+    validations:
+      required: true
+
+  - type: input
+    id: organization
+    attributes:
+      label: Publishing organization
+      placeholder: Model owner or research organization
+    validations:
+      required: true
+
+  - type: textarea
+    id: primary_sources
+    attributes:
+      label: Primary sources
+      description: Provide direct URLs, source owners/titles, release or publication dates, retrieval dates, and stable locators such as headings, tables, files, or line ranges.
+      placeholder: |
+        1. URL — source title/owner — published YYYY-MM-DD — retrieved YYYY-MM-DD — locator
+        2. URL — model card or technical report — published/retrieved dates — locator
+    validations:
+      required: true
+
+  - type: textarea
+    id: claims
+    attributes:
+      label: Proposed claims
+      description: List one material claim per row. Preserve source units and label the evidence class.
+      placeholder: |
+        | Field | Proposed value + unit | Evidence class | Source number + exact locator |
+        | --- | --- | --- | --- |
+        | total_parameters |  | Sourced fact |  |
+        | active_parameters_per_token |  | Sourced fact |  |
+        | expert_topology |  | Sourced fact |  |
+        | context_limit |  | Sourced fact |  |
+    validations:
+      required: true
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Artifact identity
+      description: List repository revision, artifact filenames, precision, size, download manifest, and cryptographic hashes when available. Write unknown where necessary.
+      placeholder: |
+        Repository/tag:
+        Artifact/revision:
+        Native or published precision:
+        Published size:
+        Hash or manifest:
+
+  - type: textarea
+    id: license
+    attributes:
+      label: License and access evidence
+      description: Link the exact license text or model-card section. Describe scope, restrictions, and ambiguities without giving legal advice.
+      placeholder: |
+        License URL and version:
+        Weight access:
+        Commercial-use statement supported by the source:
+        Geographic/use restrictions:
+        Unknowns or legal-review needs:
+    validations:
+      required: true
+
+  - type: textarea
+    id: conflicts
+    attributes:
+      label: Conflicts, unknowns, and limitations
+      description: Identify contradictory sources, family-versus-checkpoint ambiguity, missing values, or claims that should remain inferred.
+      placeholder: Unknown is acceptable. Explain why the record should not be more precise than its evidence.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional review notes
+      description: Mention related issues, prior versions, corrections, or normalization decisions a reviewer should consider.
+
+  - type: checkboxes
+    id: attestations
+    attributes:
+      label: Submission checks
+      options:
+        - label: I identified an exact model version or artifact rather than applying family-level claims silently.
+          required: true
+        - label: Material values have direct source locators and retrieval dates, with primary sources used where available.
+          required: true
+        - label: I separated sourced facts, measurements, calculations, and inferences and left unsupported values unknown.
+          required: true
+        - label: I did not submit search snippets, long copied passages, credentials, restricted artifacts, or private data.
+          required: true
+        - label: I have the right to submit the text and artifacts included in this issue.
+          required: true

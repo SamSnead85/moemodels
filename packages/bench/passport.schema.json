@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moemodels.ai/schemas/deploybench-passport-v0.2.json",
+  "title": "MOEModels DeployBench Evidence Passport v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "passportId",
+    "canonicalization",
+    "payloadSha256",
+    "classification",
+    "payload",
+    "signatures"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "0.2.0" },
+    "kind": { "const": "moemodels_deploybench_passport" },
+    "passportId": {
+      "type": "string",
+      "pattern": "^deploybench-passport-sha256-[a-f0-9]{64}$"
+    },
+    "canonicalization": { "const": "RFC8785" },
+    "payloadSha256": { "$ref": "#/$defs/sha256" },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceClass", "comparisonEligible", "reason"],
+      "properties": {
+        "evidenceClass": { "const": "measured" },
+        "comparisonEligible": { "const": false },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "payload": { "$ref": "#/$defs/payload" },
+    "signatures": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/signature" }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nullableString": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "distribution": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["minimum", "p50", "p95", "p99", "maximum", "mean"],
+      "properties": {
+        "minimum": { "type": "number", "minimum": 0 },
+        "p50": { "type": "number", "minimum": 0 },
+        "p95": { "type": "number", "minimum": 0 },
+        "p99": { "type": "number", "minimum": 0 },
+        "maximum": { "type": "number", "minimum": 0 },
+        "mean": { "type": "number", "minimum": 0 }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requestIndex",
+        "status",
+        "httpStatus",
+        "ttftMs",
+        "totalLatencyMs",
+        "promptTokens",
+        "outputTokens",
+        "outputCharacters",
+        "errorCode"
+      ],
+      "properties": {
+        "requestIndex": { "type": "integer", "minimum": 0 },
+        "status": { "enum": ["succeeded", "failed"] },
+        "httpStatus": { "type": ["integer", "null"], "minimum": 0 },
+        "ttftMs": { "type": ["number", "null"], "minimum": 0 },
+        "totalLatencyMs": { "type": "number", "minimum": 0 },
+        "promptTokens": { "type": ["integer", "null"], "minimum": 0 },
+        "outputTokens": { "type": ["integer", "null"], "minimum": 0 },
+        "outputCharacters": { "type": "integer", "minimum": 0 },
+        "errorCode": { "type": ["string", "null"], "minLength": 1 }
+      }
+    },
+    "trial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "kind",
+        "classification",
+        "run",
+        "workload",
+        "summary",
+        "measurements",
+        "missingContext",
+        "privacy"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "0.1.0" },
+        "kind": { "const": "moemodels_endpoint_benchmark" },
+        "classification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["evidenceClass", "comparisonEligible", "reason"],
+          "properties": {
+            "evidenceClass": { "const": "measured" },
+            "comparisonEligible": { "const": false },
+            "reason": { "type": "string", "minLength": 1 }
+          }
+        },
+        "run": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "startedAt",
+            "completedAt",
+            "endpointOrigin",
+            "model",
+            "artifact",
+            "runtime",
+            "infrastructure"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^endpoint-sha256-[a-f0-9]{64}$"
+            },
+            "startedAt": { "type": "string", "format": "date-time" },
+            "completedAt": { "type": "string", "format": "date-time" },
+            "endpointOrigin": { "type": "string", "format": "uri" },
+            "model": { "type": "string", "minLength": 1 },
+            "artifact": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["binding", "repository", "revision"],
+              "properties": {
+                "binding": {
+                  "enum": ["exact_revision", "endpoint_model_name_only"]
+                },
+                "repository": { "$ref": "#/$defs/nullableString" },
+                "revision": { "$ref": "#/$defs/nullableString" }
+              }
+            },
+            "runtime": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "version"],
+              "properties": {
+                "name": { "$ref": "#/$defs/nullableString" },
+                "version": { "$ref": "#/$defs/nullableString" }
+              }
+            },
+            "infrastructure": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["hardware", "topology"],
+              "properties": {
+                "hardware": { "$ref": "#/$defs/nullableString" },
+                "topology": { "$ref": "#/$defs/nullableString" }
+              }
+            }
+          }
+        },
+        "workload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "protocol",
+            "promptSha256",
+            "promptUtf8Bytes",
+            "maxOutputTokens",
+            "requests",
+            "concurrency",
+            "warmupRequests",
+            "temperature"
+          ],
+          "properties": {
+            "protocol": { "const": "openai_chat_completions_stream" },
+            "promptSha256": { "$ref": "#/$defs/sha256" },
+            "promptUtf8Bytes": { "type": "integer", "minimum": 1 },
+            "maxOutputTokens": { "type": "integer", "minimum": 1 },
+            "requests": { "type": "integer", "minimum": 1 },
+            "concurrency": { "type": "integer", "minimum": 1 },
+            "warmupRequests": { "type": "integer", "minimum": 0 },
+            "temperature": { "const": 0 }
+          }
+        },
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "attemptedRequests",
+            "successfulRequests",
+            "failedRequests",
+            "wallTimeMs",
+            "requestThroughputPerSecond",
+            "outputTokenThroughputPerSecond",
+            "ttftMs",
+            "totalLatencyMs"
+          ],
+          "properties": {
+            "attemptedRequests": { "type": "integer", "minimum": 1 },
+            "successfulRequests": { "type": "integer", "minimum": 0 },
+            "failedRequests": { "type": "integer", "minimum": 0 },
+            "wallTimeMs": { "type": "number", "exclusiveMinimum": 0 },
+            "requestThroughputPerSecond": { "type": "number", "minimum": 0 },
+            "outputTokenThroughputPerSecond": {
+              "type": ["number", "null"],
+              "minimum": 0
+            },
+            "ttftMs": { "$ref": "#/$defs/distribution" },
+            "totalLatencyMs": { "$ref": "#/$defs/distribution" }
+          }
+        },
+        "measurements": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/measurement" }
+        },
+        "missingContext": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "privacy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "promptStored",
+            "responseTextStored",
+            "apiKeyStored",
+            "statement"
+          ],
+          "properties": {
+            "promptStored": { "const": false },
+            "responseTextStored": { "const": false },
+            "apiKeyStored": { "const": false },
+            "statement": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "passed", "detail"],
+      "properties": {
+        "id": {
+          "enum": [
+            "compatible_trials",
+            "minimum_trials",
+            "immutable_artifact_revision",
+            "runtime_identity",
+            "infrastructure_identity",
+            "request_measurements",
+            "privacy_boundary"
+          ]
+        },
+        "passed": { "type": "boolean" },
+        "detail": { "type": "string", "minLength": 1 }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "producer",
+        "configurationSha256",
+        "reproducibility",
+        "trials"
+      ],
+      "properties": {
+        "producer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "version"],
+          "properties": {
+            "name": { "const": "@moemodels/bench" },
+            "version": { "const": "0.1.0" }
+          }
+        },
+        "configurationSha256": { "$ref": "#/$defs/sha256" },
+        "reproducibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requiredTrials",
+            "observedTrials",
+            "complete",
+            "gates",
+            "missing"
+          ],
+          "properties": {
+            "requiredTrials": { "const": 3 },
+            "observedTrials": { "type": "integer", "minimum": 1 },
+            "complete": { "type": "boolean" },
+            "gates": {
+              "type": "array",
+              "minItems": 7,
+              "maxItems": 7,
+              "items": { "$ref": "#/$defs/gate" }
+            },
+            "missing": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "trials": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/trial" }
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "algorithm",
+        "keyId",
+        "publicKeySpkiBase64",
+        "signedPayloadSha256",
+        "signatureBase64",
+        "semantics"
+      ],
+      "properties": {
+        "kind": { "const": "operator_authorship" },
+        "algorithm": { "const": "Ed25519" },
+        "keyId": {
+          "type": "string",
+          "pattern": "^ed25519-sha256-[a-f0-9]{64}$"
+        },
+        "publicKeySpkiBase64": { "type": "string", "minLength": 1 },
+        "signedPayloadSha256": { "$ref": "#/$defs/sha256" },
+        "signatureBase64": { "type": "string", "minLength": 1 },
+        "semantics": {
+          "const": "Self-asserted operator authorship only. This signature does not verify the declared model artifact, runtime, hardware, topology, or measurement truth."
+        }
+      }
+    }
+  }
+}

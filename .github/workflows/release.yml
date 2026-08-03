@@ -1,0 +1,50 @@
+name: Publish npm packages after a GitHub Release
+
+# Publishing a non-prerelease GitHub Release immediately attempts npm
+# publication. Reserve every package name and configure npm trusted publishing
+# for this exact workflow before publishing the GitHub Release.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: npm
+    steps:
+      - name: Check out the released revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24.12.0
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Verify source, packages, and clean-install behavior
+        run: npm test
+
+      - name: Require the release tag to match every workspace version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: node scripts/check-release-version.mjs
+
+      - name: Publish all workspaces with npm provenance
+        run: npm publish --workspaces --access public --provenance

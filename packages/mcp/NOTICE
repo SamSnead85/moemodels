@@ -1,0 +1,40 @@
+MOEModels.ai
+Copyright 2026 LockedIn Labs
+
+This product includes software developed by LockedIn Labs and is distributed
+under the Apache License, Version 2.0. The Apache License does not grant rights
+to third-party model weights, datasets, benchmark content, source documents, or
+trademarks referenced by MOEModels records.
+
+MOEModels.ai, DeployBench, and Deployment Passport names identify this project.
+Other product and organization names are the property of their respective
+owners and are used only to identify sources, artifacts, runtimes, and hardware.
+
+Third-party fixture notice
+--------------------------
+
+The file packages/ingest/test/fixtures/lm-eval/hellaswag-v0-res.json is copied
+from EleutherAI's lm-evaluation-harness at revision
+f4d4b3de3ee6741a7151a9fe74945ee515262f4c.
+
+MIT License
+
+Copyright (c) 2020 EleutherAI
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -1,0 +1,55 @@
+{
+  "name": "@moemodels/bench",
+  "version": "0.1.0",
+  "description": "Privacy-conscious serving benchmark runner for reproducible MOEModels deployment evidence.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist", "README.md", "LICENSE", "NOTICE", "passport.schema.json"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js"
+    },
+    "./passport.schema.json": "./passport.schema.json"
+  },
+  "bin": {
+    "moemodels-bench": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git",
+    "directory": "packages/bench"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels/tree/main/packages/bench#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
+}
