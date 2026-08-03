@@ -12,7 +12,14 @@ certification service.
 > **Release status:** this repository is prepared for the first public npm
 > release, but package publication is a separate maintainer action. Until
 > [`moemodels`](https://www.npmjs.com/package/moemodels) is published, use the
-> source-checkout commands below.
+> pinned source checkout below. The GitHub Action is available now at `v0`.
+
+```sh
+git clone --branch v0 --depth 1 https://github.com/SamSnead85/moemodels.git
+cd moemodels
+npm ci
+npm test
+```
 
 ## Plan → Run → Verify
 
@@ -24,7 +31,7 @@ Create an explicit validation plan from a pinned artifact, hardware target,
 runtime name, workload shape, and service objective:
 
 ```sh
-npx moemodels plan moonshotai/kimi-k3 nvidia/h200-sxm-141gb \
+npm run moemodels -- plan moonshotai/kimi-k3 nvidia/h200-sxm-141gb \
   --devices 16 \
   --devices-per-node 8 \
   --runtime vllm \
@@ -47,7 +54,7 @@ Measure an OpenAI-compatible streaming endpoint you control. Repeat the command
 at least three times with an identical resolved configuration:
 
 ```sh
-MOEMODELS_BENCH_API_KEY=... npx moemodels run \
+MOEMODELS_BENCH_API_KEY=... npm run moemodels -- run \
   --endpoint http://127.0.0.1:8000/v1/chat/completions \
   --model moonshotai/Kimi-K3 \
   --artifact-repository moonshotai/Kimi-K3 \
@@ -64,7 +71,7 @@ MOEMODELS_BENCH_API_KEY=... npx moemodels run \
 Pack compatible trials into one deterministic Passport:
 
 ```sh
-npx moemodels pack trial-01.json trial-02.json trial-03.json \
+npm run moemodels -- pack trial-01.json trial-02.json trial-03.json \
   --output passport.json
 ```
 
@@ -78,20 +85,18 @@ Recompute the Passport payload identity, configuration identity, trial
 summaries, compatibility gates, and any embedded Ed25519 signatures:
 
 ```sh
-npx moemodels verify passport.json --json
+npm run moemodels -- verify passport.json --json
 ```
 
 Verification detects structural and content tampering. A valid Passport does
 not prove that the endpoint served the declared checkpoint, establish a trusted
 operator identity, or make results comparison eligible.
 
-## Use from a source checkout
+## Requirements and local development
 
 Requirements: Node.js 22.13 or newer and npm 11.
 
 ```sh
-git clone https://github.com/SamSnead85/moemodels.git
-cd moemodels
 npm ci
 npm test
 npm run moemodels -- plan moonshotai/kimi-k3 nvidia/h200-sxm-141gb --devices 16
