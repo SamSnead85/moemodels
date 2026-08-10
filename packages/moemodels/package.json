@@ -2,9 +2,26 @@
   "name": "moemodels",
   "version": "0.1.0",
   "description": "One-command launcher for MOE deployment planning, endpoint measurement, and evidence verification.",
+  "keywords": [
+    "moe",
+    "mixture-of-experts",
+    "llm",
+    "inference",
+    "benchmark",
+    "deployment",
+    "gpu",
+    "vllm",
+    "sglang",
+    "cli"
+  ],
   "license": "Apache-2.0",
   "type": "module",
-  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "bin": {
     "moemodels": "./dist/index.js"
   },

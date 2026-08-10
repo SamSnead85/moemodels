@@ -2,9 +2,23 @@
   "name": "@moemodels/mcp",
   "version": "0.1.0",
   "description": "Read-only MCP tools for sourced MOEModels records, calculated static fit, evaluation evidence, and validation plans.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "llm",
+    "moe",
+    "agent-tools",
+    "inference"
+  ],
   "license": "Apache-2.0",
   "type": "module",
-  "files": ["dist", "README.md", "LICENSE", "NOTICE", "examples"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "examples"
+  ],
   "bin": {
     "moemodels-mcp": "./dist/index.js"
   },

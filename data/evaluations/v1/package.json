@@ -2,10 +2,25 @@
   "name": "@moemodels/evaluations-v1",
   "version": "0.1.0",
   "description": "Versioned owner-reported evidence and reproducible evaluation records for MOEModels.ai.",
+  "keywords": [
+    "llm",
+    "evaluation",
+    "benchmark",
+    "reported-claims",
+    "provenance",
+    "moe"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["index.d.ts", "evaluations.json", "schema.json", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "index.d.ts",
+    "evaluations.json",
+    "schema.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "exports": {
     ".": {
       "types": "./index.d.ts",
