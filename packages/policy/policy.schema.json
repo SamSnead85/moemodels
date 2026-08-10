@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://moemodels.ai/schemas/deploybench-policy-v0.1.json",
+  "title": "MOEModels DeployBench Deployment Policy v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "kind",
+    "name",
+    "description",
+    "evidence",
+    "rules",
+    "waivers"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "kind": { "const": "moemodels_deploybench_policy" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requireReproducibilityComplete"],
+      "properties": {
+        "requireReproducibilityComplete": { "type": "boolean" },
+        "requiredGates": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/gateId" }
+        },
+        "minimumTrials": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowedChanges"],
+      "properties": {
+        "allowedChanges": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/identityPath" }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/absoluteRule" },
+          { "$ref": "#/$defs/relativeRule" }
+        ]
+      }
+    },
+    "waivers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/waiver" }
+    }
+  },
+  "$defs": {
+    "ruleId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "metricId": {
+      "enum": [
+        "success_rate",
+        "ttft_p50_ms",
+        "ttft_p95_ms",
+        "ttft_p99_ms",
+        "ttft_mean_ms",
+        "ttft_max_ms",
+        "latency_p50_ms",
+        "latency_p95_ms",
+        "latency_p99_ms",
+        "latency_mean_ms",
+        "latency_max_ms",
+        "request_throughput_per_second",
+        "output_token_throughput_per_second"
+      ]
+    },
+    "aggregationId": {
+      "enum": ["worst_trial", "mean_of_trials", "median_of_trials"]
+    },
+    "gateId": {
+      "enum": [
+        "compatible_trials",
+        "minimum_trials",
+        "immutable_artifact_revision",
+        "runtime_identity",
+        "infrastructure_identity",
+        "request_measurements",
+        "privacy_boundary"
+      ]
+    },
+    "identityPath": {
+      "enum": [
+        "endpointOrigin",
+        "model",
+        "artifact.binding",
+        "artifact.repository",
+        "artifact.revision",
+        "runtime.name",
+        "runtime.version",
+        "infrastructure.hardware",
+        "infrastructure.topology"
+      ]
+    },
+    "absoluteRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "metric", "aggregation", "comparator", "threshold"],
+      "properties": {
+        "id": { "$ref": "#/$defs/ruleId" },
+        "kind": { "const": "absolute" },
+        "metric": { "$ref": "#/$defs/metricId" },
+        "aggregation": { "$ref": "#/$defs/aggregationId" },
+        "comparator": { "enum": ["lte", "gte"] },
+        "threshold": { "type": "number" }
+      }
+    },
+    "relativeRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "metric", "aggregation", "direction", "tolerancePct"],
+      "properties": {
+        "id": { "$ref": "#/$defs/ruleId" },
+        "kind": { "const": "relative" },
+        "metric": { "$ref": "#/$defs/metricId" },
+        "aggregation": { "$ref": "#/$defs/aggregationId" },
+        "direction": {
+          "enum": ["increase_is_regression", "decrease_is_regression"]
+        },
+        "tolerancePct": { "type": "number", "minimum": 0 }
+      }
+    },
+    "waiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ruleId", "reason", "approvedBy", "expiresAt"],
+      "properties": {
+        "ruleId": { "$ref": "#/$defs/ruleId" },
+        "reason": { "type": "string", "minLength": 1 },
+        "approvedBy": { "type": "string", "minLength": 1 },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@moemodels/policy",
+  "version": "0.1.0",
+  "description": "Policy-as-code regression gate over verified DeployBench Evidence Passports.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist", "README.md", "LICENSE", "NOTICE", "policy.schema.json"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js"
+    },
+    "./policy.schema.json": "./policy.schema.json"
+  },
+  "bin": {
+    "moemodels-policy": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@moemodels/bench": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamSnead85/moemodels.git",
+    "directory": "packages/policy"
+  },
+  "homepage": "https://github.com/SamSnead85/moemodels/tree/main/packages/policy#readme",
+  "bugs": {
+    "url": "https://github.com/SamSnead85/moemodels/issues"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
+}

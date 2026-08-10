@@ -1,6 +1,6 @@
 # Releasing
 
-The monorepo publishes nine packages from one Git tag. The unscoped
+The monorepo publishes ten packages from one Git tag. The unscoped
 `moemodels` package owns the public binary; the scoped packages remain reusable
 building blocks.
 

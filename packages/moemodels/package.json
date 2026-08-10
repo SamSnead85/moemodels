@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@moemodels/bench": "0.1.0",
-    "@moemodels/cli": "0.1.0"
+    "@moemodels/cli": "0.1.0",
+    "@moemodels/policy": "0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.19.19",
