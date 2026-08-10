@@ -1,0 +1,87 @@
+name: Cut release tags
+
+# Creates or moves release tags from a reviewed, dispatchable workflow so tag
+# writes always run the release-version guard first. Tags pushed with the
+# workflow token intentionally do not trigger other workflows; npm publication
+# still happens only when a GitHub Release is published (release.yml).
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Full 40-character commit SHA to tag. Must be on main.
+        required: true
+      version:
+        description: Release tag to create or update, e.g. v0.1.0.
+        required: true
+      update_major:
+        description: Also point the stable major Action tag (e.g. v0) at the same commit.
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cut-release-tags
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the target revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ inputs.sha }}
+          persist-credentials: false
+
+      - name: Require the target commit to be reachable from main
+        env:
+          TARGET_SHA: ${{ inputs.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$TARGET_SHA" =~ ^[a-f0-9]{40}$ ]] || { echo "sha must be a full 40-character commit SHA"; exit 1; }
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$TARGET_SHA" origin/main || {
+            echo "Refusing to tag a commit that is not on main."; exit 1; }
+
+      - name: Use Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.12.0
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Require the tag to match every workspace version
+        env:
+          RELEASE_TAG: ${{ inputs.version }}
+        run: node scripts/check-release-version.mjs
+
+      - name: Create or update the release tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_SHA: ${{ inputs.sha }}
+          VERSION_TAG: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          git push --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            "${TARGET_SHA}:refs/tags/${VERSION_TAG}"
+
+      - name: Update the stable major Action tag
+        if: ${{ inputs.update_major }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_SHA: ${{ inputs.sha }}
+          VERSION_TAG: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          MAJOR_TAG="${VERSION_TAG%%.*}"
+          [[ "$MAJOR_TAG" =~ ^v[0-9]+$ ]] || { echo "version must look like v<major>.<minor>.<patch>"; exit 1; }
+          git push --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            "${TARGET_SHA}:refs/tags/${MAJOR_TAG}"
