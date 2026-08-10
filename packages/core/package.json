@@ -2,10 +2,25 @@
   "name": "@moemodels/core",
   "version": "0.1.0",
   "description": "Strict registry types, validation, and deterministic residency math for MOEModels.ai.",
+  "keywords": [
+    "moe",
+    "mixture-of-experts",
+    "llm",
+    "gpu",
+    "vram",
+    "capacity-planning",
+    "model-registry",
+    "deployment"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

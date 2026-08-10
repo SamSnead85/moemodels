@@ -2,9 +2,24 @@
   "name": "@moemodels/registry-v1",
   "version": "0.1.0",
   "description": "Versioned, offline-first MOEModels.ai model and accelerator registry.",
+  "keywords": [
+    "moe",
+    "mixture-of-experts",
+    "model-registry",
+    "llm",
+    "accelerator",
+    "sourced-data"
+  ],
   "license": "Apache-2.0",
   "type": "module",
-  "files": ["index.d.ts", "registry.json", "schema.json", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "index.d.ts",
+    "registry.json",
+    "schema.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "exports": {
     ".": {
       "types": "./index.d.ts",

@@ -2,10 +2,23 @@
   "name": "@moemodels/sdk",
   "version": "0.1.0",
   "description": "Typed, browser-safe client for the public MOEModels.ai registry, fit, evaluation, and planning APIs.",
+  "keywords": [
+    "moe",
+    "mixture-of-experts",
+    "sdk",
+    "typescript",
+    "llm",
+    "api-client"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

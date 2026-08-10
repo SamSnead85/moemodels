@@ -2,10 +2,27 @@
   "name": "@moemodels/bench",
   "version": "0.1.0",
   "description": "Privacy-conscious serving benchmark runner for reproducible MOEModels deployment evidence.",
+  "keywords": [
+    "llm",
+    "benchmark",
+    "ttft",
+    "latency",
+    "throughput",
+    "openai-compatible",
+    "inference",
+    "evidence",
+    "reproducibility"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "NOTICE", "passport.schema.json"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "passport.schema.json"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

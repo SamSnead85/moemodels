@@ -2,10 +2,26 @@
   "name": "@moemodels/policy",
   "version": "0.1.0",
   "description": "Policy-as-code regression gate over verified DeployBench Evidence Passports.",
+  "keywords": [
+    "policy-as-code",
+    "regression-testing",
+    "ci",
+    "deployment-gate",
+    "llm",
+    "benchmark",
+    "verification",
+    "moe"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "NOTICE", "policy.schema.json"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "policy.schema.json"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

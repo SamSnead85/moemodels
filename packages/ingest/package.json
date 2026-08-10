@@ -2,10 +2,24 @@
   "name": "@moemodels/ingest",
   "version": "0.1.0",
   "description": "Deterministic, Node-only evidence ingestion adapters for MOEModels.ai.",
+  "keywords": [
+    "lm-eval",
+    "llm",
+    "evaluation",
+    "benchmark",
+    "ingest",
+    "normalization",
+    "provenance"
+  ],
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
