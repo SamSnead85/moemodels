@@ -14,8 +14,12 @@ building blocks.
 
 1. Reserve and confirm ownership of the npm names `moemodels` and
    `@moemodels/*` before publishing any GitHub Release.
-2. Create each package once if npm requires an initial interactive publication;
-   do not rely on the release workflow to reserve a name.
+2. For the very first publication, create a granular npm automation token with
+   publish access, store it as the `NPM_TOKEN` repository secret, and dispatch
+   the **Bootstrap npm publication** workflow against the release tag. It runs
+   the full test suite and version guard, publishes every workspace with
+   provenance, and creates the GitHub Release. Trusted publishing cannot be
+   configured for names that do not exist on the registry yet.
 3. Configure npm trusted publishing for repository
    `SamSnead85/moemodels`, workflow `.github/workflows/release.yml`, and GitHub
    environment `npm`.
@@ -26,8 +30,11 @@ building blocks.
 6. Create a stable major Action tag such as `v0` only after verifying the
    immutable release tag it references.
 
-No long-lived npm token belongs in the repository. The release workflow requests
-an OIDC identity token and publishes with provenance.
+After the bootstrap publication succeeds, configure trusted publishing on every
+published package and delete the npm token; no long-lived npm token belongs in
+the repository or its secrets afterward. Subsequent releases publish through
+`release.yml`, which requests an OIDC identity token and publishes with
+provenance when a GitHub Release is published.
 
 ## Release checklist
 

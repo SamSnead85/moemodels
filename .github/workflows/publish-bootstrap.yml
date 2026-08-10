@@ -1,0 +1,93 @@
+name: Bootstrap npm publication
+
+# First-time npm publication for names that do not exist on the registry yet.
+# npm trusted publishing can only be configured on packages that already
+# exist, so the initial publish authenticates with a granular automation
+# token stored as the NPM_TOKEN repository secret. After this workflow
+# succeeds once, configure trusted publishing for release.yml on every
+# published package and delete the token; later releases then publish
+# tokenlessly when a GitHub Release is published.
+#
+# The workflow re-runs the full test suite and the release-version guard
+# against the exact tag before publishing, publishes every workspace with
+# provenance, and finishes by creating the GitHub Release for the tag. A
+# Release created here does not re-trigger release.yml, so nothing publishes
+# twice.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Existing release tag to publish, e.g. v0.1.0.
+        required: true
+        default: v0.1.0
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: npm-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: npm
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: refs/tags/${{ inputs.version }}
+          persist-credentials: false
+
+      - name: Require the NPM_TOKEN secret
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "The NPM_TOKEN repository secret is not set."
+            echo "Create a granular npm automation token with publish access and add it under Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+
+      - name: Use Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 24.12.0
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Verify source, packages, and clean-install behavior
+        run: npm test
+
+      - name: Require the release tag to match every workspace version
+        env:
+          RELEASE_TAG: ${{ inputs.version }}
+        run: node scripts/check-release-version.mjs
+
+      - name: Publish all workspaces with npm provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --workspaces --access public --provenance
+
+      - name: Create the GitHub Release for the published tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_TAG: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if gh release view "$VERSION_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $VERSION_TAG already exists; leaving it unchanged."
+            exit 0
+          fi
+          gh release create "$VERSION_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "MOEModels $VERSION_TAG" \
+            --notes "Plan -> Run -> Verify -> Gate toolchain for exact mixture-of-experts deployments: strict registry v1, deterministic checkpoint-residency and validation-plan engine, privacy-conscious DeployBench endpoint runner, content-addressed Evidence Passport v0.2 with optional Ed25519 operator authorship, policy-as-code deployment gate with three-valued verdicts, typed SDK, read-only MCP server, and a GitHub Action that verifies Passports and enforces deployment policies. All packages are published to npm from this tag."
