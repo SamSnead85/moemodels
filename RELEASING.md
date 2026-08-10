@@ -46,8 +46,9 @@ an OIDC identity token and publishes with provenance.
 
 4. Review package contents for credentials, private endpoints, production
    configuration, and unsupported evidence claims.
-5. Create and push the exact `v<version>` tag through the normal reviewed
-   release process.
+5. Cut the exact `v<version>` tag by dispatching the **Cut release tags**
+   workflow against the release commit on `main`; it re-runs the version guard
+   before any ref is written and can also move the stable major Action tag.
 6. Prepare a draft GitHub Release and re-confirm package reservation and trusted
    publishing. Publishing that GitHub Release immediately triggers npm publish.
 7. Verify `npx moemodels --version`, package provenance on npm, and the immutable
