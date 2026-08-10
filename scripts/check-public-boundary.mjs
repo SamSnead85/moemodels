@@ -76,6 +76,7 @@ for (const workflowPath of [
   ".github/workflows/ci.yml",
   ".github/workflows/codeql.yml",
   ".github/workflows/cut-release-tags.yml",
+  ".github/workflows/publish-bootstrap.yml",
   ".github/workflows/release.yml",
 ]) {
   const source = await readFile(join(root, workflowPath), "utf8");
