@@ -24,6 +24,7 @@ try {
     "@moemodels/ingest",
     "@moemodels/cli",
     "@moemodels/bench",
+    "@moemodels/policy",
     "@moemodels/sdk",
     "@moemodels/mcp",
     "moemodels",
@@ -41,8 +42,8 @@ try {
     .map((entry) => join(temporaryDirectory, entry));
   assert.equal(
     tarballs.length,
-    9,
-    "expected registry, evaluations, core, ingest, CLI, benchmark, SDK, MCP, and launcher tarballs",
+    10,
+    "expected registry, evaluations, core, ingest, CLI, benchmark, policy, SDK, MCP, and launcher tarballs",
   );
   npm(["install", "--ignore-scripts", "--no-audit", "--no-fund", ...tarballs], temporaryDirectory);
 
@@ -170,6 +171,32 @@ try {
   });
   assert.equal(benchmarkVersion.status, 0, benchmarkVersion.stderr);
   assert.equal(benchmarkVersion.stdout.trim(), "0.1.0");
+
+  const policyBinary = join(
+    temporaryDirectory,
+    "node_modules",
+    ".bin",
+    "moemodels-policy",
+  );
+  const policyInit = spawnSync(policyBinary, ["init", "--json"], {
+    cwd: temporaryDirectory,
+    encoding: "utf8",
+  });
+  assert.equal(policyInit.status, 0, policyInit.stderr);
+  const policyValidation = spawnSync(
+    policyBinary,
+    ["validate-policy", join(temporaryDirectory, "policy.json")],
+    { cwd: temporaryDirectory, encoding: "utf8" },
+  );
+  assert.equal(policyValidation.status, 0, policyValidation.stderr);
+  assert.equal(JSON.parse(policyValidation.stdout).valid, true);
+
+  const policyLaunch = spawnSync(binary, ["policy", "--help"], {
+    cwd: temporaryDirectory,
+    encoding: "utf8",
+  });
+  assert.equal(policyLaunch.status, 0, policyLaunch.stderr);
+  assert.match(policyLaunch.stdout, /moemodels-policy/);
 
   const sdkSmoke = spawnSync(
     process.execPath,

@@ -15,6 +15,7 @@ for (const manifestPath of [
   "packages/ingest/package.json",
   "packages/cli/package.json",
   "packages/bench/package.json",
+  "packages/policy/package.json",
   "packages/sdk/package.json",
   "packages/mcp/package.json",
   "packages/moemodels/package.json",

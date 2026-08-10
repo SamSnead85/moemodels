@@ -1,5 +1,5 @@
 name: Verify a DeployBench Evidence Passport
-description: Recompute and validate a MOEModels Passport without trusting its self-declared deployment identity.
+description: Recompute and validate a MOEModels Passport — and optionally gate on a deployment policy — without trusting its self-declared deployment identity.
 author: MOEModels contributors
 branding:
   icon: shield
@@ -8,6 +8,23 @@ inputs:
   passport:
     description: Path to a DeployBench Evidence Passport JSON file in the caller workspace.
     required: true
+  policy:
+    description: >-
+      Optional path to a deployment policy JSON file. When set, the action
+      evaluates the policy against the passport and fails the job on a fail
+      or inconclusive verdict, appending a Markdown receipt to the job summary.
+    required: false
+    default: ""
+  baseline:
+    description: >-
+      Optional path to a baseline Passport JSON file for the policy's relative
+      regression rules. Ignored unless "policy" is also set.
+    required: false
+    default: ""
+outputs:
+  verdict:
+    description: Policy verdict ("pass", "fail", or "inconclusive") when a policy was evaluated; "verified" or "invalid" for a verify-only run.
+    value: ${{ steps.gate.outputs.verdict }}
 runs:
   using: composite
   steps:
@@ -20,12 +37,40 @@ runs:
       shell: bash
       run: npm ci --ignore-scripts --no-audit --no-fund --prefix "$GITHUB_ACTION_PATH"
 
-    - name: Build the verifier from the tagged source
+    - name: Build the verifier and policy gate from the tagged source
       shell: bash
-      run: npm run build:bench --silent --prefix "$GITHUB_ACTION_PATH"
+      run: npm run build:policy --silent --prefix "$GITHUB_ACTION_PATH"
 
-    - name: Verify Passport integrity and semantics
+    - name: Verify Passport integrity and evaluate the deployment policy
+      id: gate
       shell: bash
       env:
         MOEMODELS_PASSPORT_PATH: ${{ inputs.passport }}
-      run: node "$GITHUB_ACTION_PATH/packages/bench/dist/cli.js" verify "$MOEMODELS_PASSPORT_PATH" --json
+        MOEMODELS_POLICY_PATH: ${{ inputs.policy }}
+        MOEMODELS_BASELINE_PATH: ${{ inputs.baseline }}
+      run: |
+        set -euo pipefail
+        if [ -z "$MOEMODELS_POLICY_PATH" ]; then
+          if node "$GITHUB_ACTION_PATH/packages/bench/dist/cli.js" verify "$MOEMODELS_PASSPORT_PATH" --json; then
+            echo "verdict=verified" >> "$GITHUB_OUTPUT"
+          else
+            echo "verdict=invalid" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          exit 0
+        fi
+        baseline_args=()
+        if [ -n "$MOEMODELS_BASELINE_PATH" ]; then
+          baseline_args=(--baseline "$MOEMODELS_BASELINE_PATH")
+        fi
+        status=0
+        node "$GITHUB_ACTION_PATH/packages/policy/dist/cli.js" check \
+          "$MOEMODELS_PASSPORT_PATH" --policy "$MOEMODELS_POLICY_PATH" \
+          ${baseline_args[@]+"${baseline_args[@]}"} --json || status=$?
+        case "$status" in
+          0) echo "verdict=pass" >> "$GITHUB_OUTPUT" ;;
+          1) echo "verdict=fail" >> "$GITHUB_OUTPUT" ;;
+          3) echo "verdict=inconclusive" >> "$GITHUB_OUTPUT" ;;
+          *) echo "verdict=error" >> "$GITHUB_OUTPUT" ;;
+        esac
+        exit "$status"

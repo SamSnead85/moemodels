@@ -36,6 +36,7 @@ const forbiddenNames = new Set([
 const allowedDocs = new Set([
   "DEPLOYBENCH_V0_1.md",
   "DEPLOYMENT_PASSPORT_V0_2.md",
+  "POLICY_GATE_V0_1.md",
 ]);
 
 async function walk(directory) {
@@ -92,6 +93,7 @@ for (const manifestPath of [
   "packages/ingest/package.json",
   "packages/cli/package.json",
   "packages/bench/package.json",
+  "packages/policy/package.json",
   "packages/sdk/package.json",
   "packages/mcp/package.json",
   "packages/moemodels/package.json",

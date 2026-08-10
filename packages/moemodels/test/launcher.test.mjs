@@ -28,3 +28,18 @@ test("launcher dispatches registry and benchmark commands", () => {
   assert.equal(benchmark.status, 2);
   assert.match(benchmark.stderr, /verify requires a passport JSON file/);
 });
+
+test("launcher dispatches policy commands", () => {
+  const help = launch(["policy", "--help"]);
+  assert.equal(help.status, 0, help.stderr);
+  assert.match(help.stdout, /moemodels-policy/);
+  assert.match(help.stdout, /inconclusive/);
+
+  const check = launch(["policy", "check"]);
+  assert.equal(check.status, 2);
+  assert.match(check.stderr, /check requires a candidate passport JSON file/);
+
+  const compare = launch(["compare"]);
+  assert.equal(compare.status, 2);
+  assert.match(compare.stderr, /compare requires a baseline and a candidate/);
+});
